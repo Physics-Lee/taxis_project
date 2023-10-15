@@ -1,0 +1,1 @@
+Not useful anymore, I will use $<\frac{|\Delta \theta|}{d}>$ instead.
