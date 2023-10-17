@@ -1,7 +1,7 @@
 clear;clc;close all;
 
 my_add_path;
-path = uigetdir('F:\1_learning\research\taxis of C.elegans\data analysis of Colbert\data');
+path = uigetdir;
 if path ~= 0
     list_csv = get_all_files_of_a_certain_type_in_a_rootpath(path,'*machine_label_v2_frame_window_10.csv');
     [indx,tf] = listdlg('ListString',list_csv,'ListSize',[800,600],'Name','Chose files');
