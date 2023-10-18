@@ -21,7 +21,7 @@ path = uigetdir;
 if path ~= 0
 
     % get full paths of files
-    % name_pattern = 'cos___-3_4_pi_as_ideal___-pi_run_disp_of_track_*';
+    % name_pattern = 'cos___*pi_as_ideal___-pi___mean_of_data___run_disp_of_worm_*';
     name_pattern = 'cos___*pi_as_ideal___-pi___mean_of_data___run_disp_of_track_*';
     list = get_all_files_of_a_certain_name_pattern_in_a_rootpath(path,name_pattern);
 
@@ -84,6 +84,7 @@ title(title_str);
 
 % add lim
 xlim([0.2,2]);
+ylim([0,1]);
 
 % add legend
 option_taxis = get_taxis_type_by_full_path(full_path);

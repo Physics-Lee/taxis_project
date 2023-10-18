@@ -16,10 +16,10 @@ if path ~= 0
             % load mcd.mat
             [parent_dir,~,~] = fileparts(full_path_to_csv);
             [folder_path_of_mcd,~,~] = fileparts(parent_dir);
-            list_mcd = get_all_files_of_a_certain_type_in_a_rootpath(folder_path_of_mcd,'*mcd_corr*.mat');
+            list_mcd = get_all_files_of_a_certain_type_in_a_rootpath(folder_path_of_mcd,'*mcd_corrected.mat');
 
             if size(list_mcd,2) ~= 1
-                error("More than 1 '*mcd_corr*.mat' in the folder!");
+                error("More than 1 '*mcd_corrected.mat' in the folder!");
             end
 
             full_path_to_mcd = list_mcd{1};
@@ -46,9 +46,8 @@ if path ~= 0
             run_disp_smoothed_downsampled_smoothed = smooth_run_disp(run_disp_smoothed_downsampled,window_size);
 
             % save
-            my_save(folder_path_of_mcd, 'disp', 'run_disp_smoothed_downsampled_smoothed.mat', 'run_disp_smoothed_downsampled_smoothed', run_disp_smoothed_downsampled_smoothed);
-
-            plot_run_and_save(run_disp_smoothed_downsampled_smoothed,f_sample,full_path_to_mcd)
+            my_save(folder_path_of_mcd, 'disp_new', 'run_disp_smoothed_downsampled_smoothed.mat', 'run_disp_smoothed_downsampled_smoothed', run_disp_smoothed_downsampled_smoothed);
+            plot_run_and_save(run_disp_smoothed_downsampled_smoothed,f_sample,full_path_to_mcd);
 
         end
     end
@@ -63,10 +62,10 @@ plot_run_disp_and_reorientation_disp(run_disp_merged,reorientation_disp_merged,f
 
 % save to the corresponding folder
 father_folder_path = fileparts(full_path_to_mcd);
-my_save_for_gcf(father_folder_path, 'run_reorientation_trajectory_of_mcd_corrected', 'f_sample_66Hz');
+my_save_for_gcf(father_folder_path, 'run_reorientation_trajectory_of_mcd_corrected_new', 'f_sample_66Hz');
 
 % save to the same folder
-father_folder_path = 'F:\1_learning\research\taxis of C.elegans\data analysis of Colbert\result\visulization_run_reorientation_f_sample_66Hz';
+father_folder_path = 'D:\Nut_store\Colbert\result\basic\visulization_of_run_and_reorientation_new';
 save_to_the_same_folder(father_folder_path,full_path_to_mcd);
 close;
 
@@ -87,7 +86,7 @@ run_disp_smoothed_downsampled_smoothed_merged = merge_cell_array(run_disp_smooth
 plot_run_disp(run_disp_smoothed_downsampled_smoothed_merged,f_sample,'blue','run');
 
 % save to the same folder
-father_folder_path = 'F:\1_learning\research\taxis of C.elegans\data analysis of Colbert\result\visulization_run_disp_smoothed_downsampled_smoothed_merged';
+father_folder_path = 'D:\Nut_store\Colbert\result\basic\visulization_of_run_disp_smoothed_downsampled_smoothed_new';
 save_to_the_same_folder(father_folder_path,full_path_to_mcd);
 close;
 

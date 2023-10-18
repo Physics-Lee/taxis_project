@@ -35,9 +35,12 @@ path = uigetdir;
 if path ~= 0
 
     % choose type of run disp
-    type_of_run_disp = "each_track";
-    % type_of_run_disp = "all_tracks";
+    type_of_run_disp = "all_worms";
     switch type_of_run_disp
+        case "each_worm"
+            name_pattern = 'run_disp_of_worm_*.mat';
+        case "all_worms"
+            name_pattern = 'run_disp_of_all_worms.mat';
         case "each_track"
             name_pattern = 'run_disp_of_track_*.mat';
         case "all_tracks"
@@ -58,7 +61,7 @@ if path ~= 0
 
             % load
             full_path = list{i};
-            load(full_path);
+            run_disp = load_data_from_mat(full_path);
 
             % make mats
             common_prefix = strcat(path,'\');
@@ -98,7 +101,7 @@ if path ~= 0
             % save
             save_file_name = create_save_file_name(option_measure,option_partition_region,option_ideal_theta);
             save_file_name = [char(save_file_name) '___mean_of_data.mat'];
-            if type_of_run_disp == "each_track"
+            if type_of_run_disp == "each_track" || type_of_run_disp == "each_worm"
                 new_str = ['___' file_name '.mat'];
                 save_file_name = strrep(save_file_name,'.mat',new_str);
             end

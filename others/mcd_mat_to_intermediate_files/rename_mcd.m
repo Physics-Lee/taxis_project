@@ -24,7 +24,7 @@ if path ~= 0
 
             full_path_to_yaml = list{i};
             [folder_path_of_yaml,file_name_of_yaml] = fileparts(full_path_to_yaml);
-            list_mcd = get_all_files_of_a_certain_name_pattern_in_a_rootpath(folder_path_of_yaml,'mcd*.mat');
+            list_mcd = get_all_files_of_a_certain_name_pattern_in_a_rootpath(folder_path_of_yaml,'*mcd_corred.mat');
 
             % if no certain file
             if size(list_mcd,2) == 0
@@ -32,14 +32,14 @@ if path ~= 0
             end
 
             % loop to rename each file
-            for j = size(list_mcd,2)
+            for j = 1:size(list_mcd,2)
 
                 % old full path
                 full_path_to_mcd = list_mcd{j};
 
                 % new full path
                 [folder_path_of_mcd,file_name_of_mcd,ext_of_mcd] = fileparts(full_path_to_mcd);
-                file_name_of_mcd_new = [file_name_of_yaml '_' file_name_of_mcd ext_of_mcd];
+                file_name_of_mcd_new = [file_name_of_yaml '_' 'mcd_corrected' ext_of_mcd];
                 full_path_to_mcd_new = fullfile(folder_path_of_mcd,file_name_of_mcd_new);
 
                 % rename
