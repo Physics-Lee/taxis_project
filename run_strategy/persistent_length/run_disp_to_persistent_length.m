@@ -20,6 +20,8 @@ clc;clear;close all;
 
 global folder_path_of_eset;
 
+global is_save_fig;
+
 %% choose measure
 option_measure = "cos";
 
@@ -39,12 +41,16 @@ if path ~= 0
     switch type_of_run_disp
         case "each_worm"
             name_pattern = 'run_disp_of_worm_*.mat';
+            is_save_fig = false;
         case "all_worms"
             name_pattern = 'run_disp_of_all_worms.mat';
+            is_save_fig = true;
         case "each_track"
             name_pattern = 'run_disp_of_track_*.mat';
+            is_save_fig = false;
         case "all_tracks"
             name_pattern = 'run_disp_of_all_tracks.mat';
+            is_save_fig = true;
     end
 
     % get full paths of files

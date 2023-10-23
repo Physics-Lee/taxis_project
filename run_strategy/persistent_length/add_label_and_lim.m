@@ -16,11 +16,6 @@ switch option_measure
         xlim([x_down_limit x_up_limit]);
         ylim([0 1]);
 
-        for x_up_limit = [2]
-            xlim([x_down_limit x_up_limit]);
-            output_figures(save_folder_path,option_measure,option_partition_region,option_ideal_theta,x_up_limit,'png');
-        end
-
     case "MSE"
         ylabel('<MSE>', 'FontSize', 14);
         xlim([x_down_limit x_up_limit]);
@@ -51,20 +46,10 @@ switch option_measure
         ylabel('$<\frac{\Delta \theta}{d}>$ (deg/mm)', 'FontSize', 14, 'Interpreter', 'latex');
         ylim([-30 +30]);
 
-        for x_up_limit = [30,10,5,2]
-            xlim([x_down_limit x_up_limit]);
-            output_figures(save_folder_path,option_measure,option_partition_region,option_ideal_theta,x_up_limit,'png');
-        end
-
     case "Iino_curving_rate_v3"
         x_down_limit = 1;
         ylabel('$<\frac{|\Delta \theta|}{d}>$ (deg/mm)', 'FontSize', 14, 'Interpreter', 'latex');
         ylim([0 +40]);
-
-        for x_up_limit = [30 10 5 2]
-            xlim([x_down_limit x_up_limit]);
-            output_figures(save_folder_path,option_measure,option_partition_region,option_ideal_theta,x_up_limit,'png');
-        end
 
 end
 
