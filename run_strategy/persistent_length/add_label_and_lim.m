@@ -3,7 +3,7 @@
 % 2023-09-27, Yixuan Li
 %
 
-function add_label_and_lim(save_folder_path,option_measure,option_partition_region,option_ideal_theta)
+function x_up_limit = add_label_and_lim(option_measure)
 
 xlabel('run length (mm)', 'FontSize', 14);
 x_up_limit = 2; % mm
@@ -52,9 +52,5 @@ switch option_measure
         ylim([0 +40]);
 
 end
-
-output_figures(save_folder_path,option_measure,option_partition_region,option_ideal_theta,x_up_limit,'fig');
-close;
-disp('figs saved successfully!');
 
 end

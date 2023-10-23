@@ -81,7 +81,15 @@ for ii = 1:size(mats,1)
     % add label, lim, title, legend
     add_title(mats{ii,2},option_measure,option_ideal_theta);
     add_legend(option_partition_region);
-    add_label_and_lim(save_folder_path,option_measure,option_partition_region,option_ideal_theta);
+    x_up_limit = add_label_and_lim(option_measure);
+
+    % save
+    global is_save_fig
+    if is_save_fig
+        output_figures(save_folder_path,option_measure,option_partition_region,option_ideal_theta,x_up_limit,'fig');
+    else
+        close;
+    end
 
 end
 
