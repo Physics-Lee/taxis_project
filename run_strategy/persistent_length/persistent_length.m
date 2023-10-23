@@ -6,17 +6,10 @@
 
 function mean_of_data = persistent_length(mats,option_measure,option_partition_region,option_ideal_theta,save_folder_path)
 
-% init
-% persistent_length = cell(size(mats,1),5);
-% persistent_length(:,1) = mats(:,2);
-
 % loop to process each run_disp
 for ii = 1:size(mats,1)
 
-    %% get the theta_in-correlation-displacement martix
-    %
-    % theta_in is the theta_in of each run, that is how we presever the time order
-    %
+    %% get the theta_in-correlation-path_length martix
     run_disp = mats{ii,1};
     corr = analyze_branches(run_disp, option_measure, option_ideal_theta);
 
@@ -91,12 +84,5 @@ for ii = 1:size(mats,1)
     add_label_and_lim(save_folder_path,option_measure,option_partition_region,option_ideal_theta);
 
 end
-
-% % save persistent length (deprecated temporarily)
-% header = {'persistent length (mm)','quadrant 3', 'quadrant 4','quadrant 1','quadrant 2'};
-% persistent_length = [header; persistent_length];
-% [~, save_file_name, ~] = fileparts(output_folder);
-% save_file_name = [save_file_name '_persistent_length.csv'];
-% writecell(persistent_length, file_name);
 
 end

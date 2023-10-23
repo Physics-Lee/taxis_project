@@ -1,10 +1,15 @@
-% calculate the persistent length based on measure, partition and ideal
-% unit vector.
-%
 % run_disp should be n_runs*1 cell array where each element is 2*n_points float
 % array.
 %
-% return theta_in-correlation-displacement martix.
+% return theta_in-correlation-path_length martix.
+%
+% theta_in is the first theta of each run, that is how we preseve the time
+% order.
+%
+% correlation is "cos", "MSE", "tortuosity", "cos_to_ideal",
+% "MSE_to_ideal", "velocity" or "Iino_curving_rate"
+%
+% path_length is the path length of each run.
 %
 % 2023-09-26, Yixuan Li
 %
