@@ -21,8 +21,7 @@ path = uigetdir;
 if path ~= 0
 
     % get full paths of files
-    % name_pattern = 'cos___*pi_as_ideal___-pi___mean_of_data___run_disp_of_worm_*';
-    name_pattern = 'cos___*pi_as_ideal___-pi___mean_of_data___run_disp_of_track_*';
+    name_pattern = 'cos___*pi_as_ideal___-pi___mean_of_data___run_disp_of_*';
     list = get_all_files_of_a_certain_name_pattern_in_a_rootpath(path,name_pattern);
 
     % choose files
@@ -108,17 +107,17 @@ save_full_path = fullfile(save_folder_path,save_file_name);
 saveas(gcf,save_full_path,'fig');
 saveas(gcf,save_full_path,'png');
 
-% semilogy
-errorbar_semilogy;
-save_file_name = 'error_bar_for_different_tracks_semilogy';
-save_full_path = fullfile(save_folder_path,save_file_name);
-saveas(gcf,save_full_path,'png');
-
-% loglog
-errorbar_loglog;
-save_file_name = 'error_bar_for_different_tracks_loglog';
-save_full_path = fullfile(save_folder_path,save_file_name);
-saveas(gcf,save_full_path,'png');
+% % semilogy
+% errorbar_semilogy;
+% save_file_name = 'error_bar_for_different_tracks_semilogy';
+% save_full_path = fullfile(save_folder_path,save_file_name);
+% saveas(gcf,save_full_path,'png');
+% 
+% % loglog
+% errorbar_loglog;
+% save_file_name = 'error_bar_for_different_tracks_loglog';
+% save_full_path = fullfile(save_folder_path,save_file_name);
+% saveas(gcf,save_full_path,'png');
 
 % close
 close;

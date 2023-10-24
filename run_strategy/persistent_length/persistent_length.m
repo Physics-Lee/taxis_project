@@ -72,9 +72,6 @@ for ii = 1:size(mats,1)
             'Color',custom_colors(j,:)...
             );
         hold on;
-
-        % linear fit
-        % persistent_length{ii,j + 1} = linear_fit(path_length{j}, mean_of_data{j});
    
     end
 

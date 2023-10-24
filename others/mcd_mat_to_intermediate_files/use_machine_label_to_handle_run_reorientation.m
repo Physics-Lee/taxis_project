@@ -46,7 +46,10 @@ if path ~= 0
             run_disp_smoothed_downsampled_smoothed = smooth_run_disp(run_disp_smoothed_downsampled,window_size);
 
             % save
-            my_save(folder_path_of_mcd, 'disp_new', 'run_disp_smoothed_downsampled_smoothed.mat', 'run_disp_smoothed_downsampled_smoothed', run_disp_smoothed_downsampled_smoothed);
+            [~,worm_str,~] = fileparts(folder_path_of_mcd);
+            worm_str = strrep(worm_str,'w','worm_');
+            save_file_name = strcat('run_disp_of_',worm_str,'.mat');
+            my_save(folder_path_of_mcd, 'disp_new', save_file_name, 'run_disp_smoothed_downsampled_smoothed', run_disp_smoothed_downsampled_smoothed);
             plot_run_and_save(run_disp_smoothed_downsampled_smoothed,f_sample,full_path_to_mcd);
 
         end
