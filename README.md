@@ -16,6 +16,8 @@ For the taxis project, we have found that
 
 Now we have data from both the high-throughout system and the Colbert system, so it is better to save some halfway files.
 
+Just 2 steps. **(I will call the first step upstream and call the second step downstream.)**
+
 For the high-throughout system:
 
 `eset.mat -> run_disp.mat et al. -> results`
