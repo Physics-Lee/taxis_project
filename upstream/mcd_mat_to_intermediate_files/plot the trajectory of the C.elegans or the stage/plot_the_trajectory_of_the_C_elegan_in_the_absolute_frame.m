@@ -1,4 +1,4 @@
-function plot_the_trajectory_of_the_C_elegan(mcd,start_frame,end_frame,fps,folder_path)
+function plot_the_trajectory_of_the_C_elegan_in_the_absolute_frame(mcd,start_frame,end_frame,fps,folder_path)
 
 global pixel2um unit2um
 pixel2um = 1.6835;

@@ -1,4 +1,4 @@
-function plot_the_stage_position_trajectory_of_the_C_elegan(mcd,start_frame,end_frame,fps,save_folder_path)
+function plot_the_trajectory_of_the_stage_in_the_absolute_frame(mcd,start_frame,end_frame,fps,save_folder_path)
 
 unit2um = 0.05;
 s2frame = 66;
