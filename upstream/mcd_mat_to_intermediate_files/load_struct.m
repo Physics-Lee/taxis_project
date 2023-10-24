@@ -1,7 +1,5 @@
-function variable_within_struct = load_struct(full_path)
-% only suitable for struct with 1 variable
+function data = load_struct(full_path)
 
-loaded_data = load(full_path);
-variable_within_struct = loaded_data.(char(fieldnames(loaded_data)));
+data = load_data_from_mat(full_path);
 
 end

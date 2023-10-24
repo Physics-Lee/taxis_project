@@ -24,7 +24,7 @@ for ii = 1:size(mats,1)
     end
 
     %% drop theta_in
-    corr_sorted_by_theta_in = corr_sorted_by_theta_in(:,2:end); 
+    corr_sorted_by_theta_in = corr_sorted_by_theta_in(:,2:end);
 
     %% calculate mean and error bar in each small bin of path length
 
@@ -57,12 +57,12 @@ for ii = 1:size(mats,1)
 
     % loop to plot each region
     figure;
-    n_threshold = 100; % a super-parameter
+    n_threshold_for_plot = 100; % a super-parameter
     custom_colors = [0 0 1; 0 1 1; 0 0 0; 1 0 0]; % set custom colors
     for j = 1:n_regions
 
         % only plot bins which have more points than n_threshold
-        mask = counts{j} > n_threshold;
+        mask = counts{j} > n_threshold_for_plot;
 
         % plot with error-bar
         errorbar(...
@@ -72,7 +72,7 @@ for ii = 1:size(mats,1)
             'Color',custom_colors(j,:)...
             );
         hold on;
-   
+
     end
 
     % add label, lim, title, legend
@@ -84,8 +84,17 @@ for ii = 1:size(mats,1)
     global is_save_fig
     if is_save_fig
         output_figures(save_folder_path,option_measure,option_partition_region,option_ideal_theta,x_up_limit,'fig');
+        output_figures(save_folder_path,option_measure,option_partition_region,option_ideal_theta,x_up_limit,'png');
+        close;
     else
         close;
+    end
+
+    %% process mean_of_data
+    n_threshold_for_save = 100; % super-parameter
+    for j = 1:n_regions
+        mask = counts{j} < n_threshold_for_save;
+        mean_of_data{j}(mask) = NaN;
     end
 
 end

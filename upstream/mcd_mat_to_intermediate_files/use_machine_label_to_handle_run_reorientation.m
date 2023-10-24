@@ -70,14 +70,20 @@ plot_run_disp_and_reorientation_disp(run_disp_merged,reorientation_disp_merged,f
 father_folder_path = fileparts(full_path_to_mcd);
 my_save_for_gcf(father_folder_path, 'run_reorientation_trajectory_of_mcd_corrected_new', 'f_sample_66Hz');
 
+% close
+close;
+
 end
 
-function plot_run_and_save(run_disp_smoothed_downsampled_smoothed,f_sample,full_path_to_mcd)
+function plot_run_and_save(run_disp_smoothed_downsampled_smoothed,f_sample)
 
 % merge
 run_disp_smoothed_downsampled_smoothed_merged = merge_cell_array(run_disp_smoothed_downsampled_smoothed);
 
 % plot
 plot_run_disp(run_disp_smoothed_downsampled_smoothed_merged,f_sample,'blue','run');
+
+% close
+close;
 
 end

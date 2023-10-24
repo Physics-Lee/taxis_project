@@ -22,9 +22,6 @@ save_file_name = add_date_and_time(save_file_name);
 save_full_path = fullfile(save_folder_path,save_file_name);
 saveas(gcf,save_full_path,ext);
 
-% close
-close;
-
 % disp
 disp('figs saved successfully!');
 

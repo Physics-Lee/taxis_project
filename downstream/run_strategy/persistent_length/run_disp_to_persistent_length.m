@@ -37,13 +37,14 @@ path = uigetdir;
 if path ~= 0
 
     % choose type of run disp
-    type_of_run_disp = "each_worm";
+    type_of_run_disp = "each_track";
     switch type_of_run_disp
         case "each_worm"
             name_pattern = 'run_disp_of_worm_*.mat';
-            is_save_fig = false;
+            % is_save_fig = false;
+            is_save_fig = true;
         case "all_worms"
-            name_pattern = 'run_disp_of_all_worms.mat';
+            name_pattern = '*.mat';
             is_save_fig = true;
         case "each_track"
             name_pattern = 'run_disp_of_track_*.mat';
@@ -84,9 +85,9 @@ if path ~= 0
             mats{1,2} = title_name;
 
             % get taxis type
-            option_taxis = get_taxis_type_by_full_path(title_name);
+            option_taxis = get_taxis_type_by_full_path(full_path);
 
-            % option_region: 1 for traditional, 2 for NT like, 3 for NC like
+            % option_partition_region: 1 for traditional, 2 for NT like, 3 for NC like
             switch option_taxis
                 case {"NC","NT","Pa"}
                     option_partition_region = "-pi_as_ideal";
@@ -100,6 +101,7 @@ if path ~= 0
             end
 
             % you can change partition region here if you like
+            % option_partition_region = "-1/2*pi_as_ideal"; % special for Runhui's data
 
             % calculate, plot and save figs
             mean_of_data = persistent_length(mats,option_measure,option_partition_region,option_ideal_theta,folder_path_of_eset);

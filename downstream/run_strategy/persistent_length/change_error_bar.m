@@ -48,7 +48,8 @@ n_tracks = length(indx);
 n_regions = 4;
 n_bins = size(data_cell_array{1, 1}{1, 1},2);
 
-% Convert cell arrays to 3D matrix
+% Convert cell arrays to 3D matrix, the size of it is n_tracks * n_regions
+% * n_bins
 data_3D_array = zeros(n_tracks, n_regions, n_bins);
 for i = 1:n_tracks
     for j = 1:n_regions
@@ -63,11 +64,23 @@ end
 
 mean_values = squeeze(mean(data_3D_array, 1,"omitnan"));
 error_bar_values = squeeze(std(data_3D_array, 0, 1,"omitnan"));
-error_bar_values = error_bar_values/sqrt(n_tracks);
 
+% use n_drop_nan to calculate SEM
+n_drop_nan_save = zeros(n_regions,n_bins);
+for i = 1:n_regions
+    for j = 1:n_bins
+        data_now = data_3D_array(:,i,j);
+        n_drop_nan = sum(~isnan(data_now));
+        error_bar_values(i,j) = error_bar_values(i,j) / n_drop_nan;
+
+        n_drop_nan_save(i,j) = n_drop_nan;
+    end
+end
+
+%% plot
 step_size = 30/n_bins;
 x = 0:step_size:30 - step_size;
-custom_colors = [0 0 1; 0 1 1; 0 0 0; 1 0 0]; % set custom colors
+custom_colors = [0 0 1; 0 1 1; 0 0 0; 1 0 0]; % blue-cyan-black-red
 for j = 1:4
     errorbar(x,mean_values(j,:),error_bar_values(j,:),'Color',custom_colors(j,:)); % core
     hold on;
@@ -95,6 +108,10 @@ switch option_taxis
     case {"Or"}
         option_partition_region = "-3/4*pi_as_ideal";
 end
+
+% you can change partition region here if you like
+% option_partition_region = "-1/2*pi_as_ideal"; % special for Runhui's data
+
 add_legend(option_partition_region);
 
 % save
@@ -112,7 +129,7 @@ saveas(gcf,save_full_path,'png');
 % save_file_name = 'error_bar_for_different_tracks_semilogy';
 % save_full_path = fullfile(save_folder_path,save_file_name);
 % saveas(gcf,save_full_path,'png');
-% 
+%
 % % loglog
 % errorbar_loglog;
 % save_file_name = 'error_bar_for_different_tracks_loglog';
@@ -130,7 +147,7 @@ close;
 %             % Stop if we have more than 4 regions since we're plotting only a 2x2 grid
 %             break;
 %         end
-% 
+%
 %         % plot
 %         subplot(2,2,i);
 %         test = data_3D_array(:,i,round(x_critical/step_size));
@@ -140,7 +157,7 @@ close;
 %         title(from_index_to_color(i));
 %         xlim([-1 +1]);
 %     end
-% 
+%
 %     % save
 %     save_folder_path_new = fullfile(save_folder_path,'histogram of a single point in persistent lenght with error bar for branches');
 %     create_folder(save_folder_path_new);

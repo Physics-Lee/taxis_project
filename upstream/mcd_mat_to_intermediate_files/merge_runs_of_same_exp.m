@@ -10,7 +10,7 @@ if path ~= 0
 
         list_screened = screen_list(list,substr);
 
-        if size(list_screened,2) == 0
+        if size(list_screened,1) == 0
             disp(['For ' char(substr) ', The list is empty!']);
             continue;
         end
@@ -30,12 +30,12 @@ if path ~= 0
             run_disp_all = vertcat(run_disp_all{:});
     
             % save
-            father_folder_path = 'F:\1_learning\research\taxis of C.elegans\data analysis of Colbert\result\run_disp_smoothed_downsampled_smoothed' ;
-            name_of_new_folder = get_suitable_folder_name(full_path);
-            file_name = [char(substr) '.mat'];
-            folder_path_of_save = create_save_folder(father_folder_path,name_of_new_folder);
-            file_path_of_save = fullfile(folder_path_of_save,file_name);
-            save(file_path_of_save,'run_disp_all');
+            % father_folder_path = fileparts(fileparts(fileparts(full_path)));
+            father_folder_path = fileparts(fileparts(full_path));
+            save_folder_path = fullfile(father_folder_path,'run_disp_of_all_worms');
+            save_file_name = [char(substr) '.mat'];
+            save_full_path = fullfile(save_folder_path,save_file_name);
+            save(save_full_path,'run_disp_all');
     
         end
     end
