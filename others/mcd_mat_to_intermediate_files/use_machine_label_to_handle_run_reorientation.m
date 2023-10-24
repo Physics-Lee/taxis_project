@@ -29,6 +29,7 @@ if path ~= 0
             run_disp = process_labels(label_rearranged, mcd, "forward", f_sample);
             reorientation_disp = process_labels(label_rearranged, mcd, "reorientation", f_sample);
 
+            % plot
             plot_run_reorientation_and_save(run_disp,reorientation_disp,f_sample,full_path_to_mcd);
 
             % smooth
@@ -50,6 +51,8 @@ if path ~= 0
             worm_str = strrep(worm_str,'w','worm_');
             save_file_name = strcat('run_disp_of_',worm_str,'.mat');
             my_save(folder_path_of_mcd, 'disp_new', save_file_name, 'run_disp_smoothed_downsampled_smoothed', run_disp_smoothed_downsampled_smoothed);
+            
+            % plot
             plot_run_and_save(run_disp_smoothed_downsampled_smoothed,f_sample,full_path_to_mcd);
 
         end
@@ -67,17 +70,6 @@ plot_run_disp_and_reorientation_disp(run_disp_merged,reorientation_disp_merged,f
 father_folder_path = fileparts(full_path_to_mcd);
 my_save_for_gcf(father_folder_path, 'run_reorientation_trajectory_of_mcd_corrected_new', 'f_sample_66Hz');
 
-% save to the same folder
-father_folder_path = 'D:\Nut_store\Colbert\result\basic\visulization_of_run_and_reorientation_new';
-save_to_the_same_folder(father_folder_path,full_path_to_mcd);
-close;
-
-end
-
-function save_to_the_same_folder(father_folder_path,full_path_to_mcd)
-name_of_new_folder = get_suitable_folder_name_from_mcd_dir(full_path_to_mcd);
-file_name = get_suitable_file_name_from_mcd_dir(full_path_to_mcd);
-my_save_for_gcf(father_folder_path, name_of_new_folder, file_name);
 end
 
 function plot_run_and_save(run_disp_smoothed_downsampled_smoothed,f_sample,full_path_to_mcd)
@@ -87,10 +79,5 @@ run_disp_smoothed_downsampled_smoothed_merged = merge_cell_array(run_disp_smooth
 
 % plot
 plot_run_disp(run_disp_smoothed_downsampled_smoothed_merged,f_sample,'blue','run');
-
-% save to the same folder
-father_folder_path = 'D:\Nut_store\Colbert\result\basic\visulization_of_run_disp_smoothed_downsampled_smoothed_new';
-save_to_the_same_folder(father_folder_path,full_path_to_mcd);
-close;
 
 end
