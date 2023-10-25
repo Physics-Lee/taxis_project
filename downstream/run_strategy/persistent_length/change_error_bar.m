@@ -12,6 +12,9 @@ clc;clear;close all;
 
 data_cell_array = {};
 
+%% if Runhui's NC
+is_Runhui_NC = false;
+
 %% choose files to analyze
 
 % chose the folder to analyze
@@ -110,7 +113,9 @@ switch option_taxis
 end
 
 % you can change partition region here if you like
-% option_partition_region = "-1/2*pi_as_ideal"; % special for Runhui's data
+if is_Runhui_NC
+    option_partition_region = "-1/2*pi_as_ideal"; % special for Runhui's data
+end
 
 add_legend(option_partition_region);
 
