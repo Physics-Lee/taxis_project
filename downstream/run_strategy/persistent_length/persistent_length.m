@@ -76,7 +76,8 @@ for ii = 1:size(mats,1)
     end
 
     % add label, lim, title, legend
-    add_title(mats{ii,2},option_measure,option_ideal_theta);
+    
+    % add_title(mats{ii,2},option_measure,option_ideal_theta); % suitable eset.mat
     add_legend(option_partition_region);
     x_up_limit = add_label_and_lim(option_measure);
 
@@ -91,11 +92,11 @@ for ii = 1:size(mats,1)
     end
 
     %% process mean_of_data
-    n_threshold_for_save = 100; % super-parameter
-    for j = 1:n_regions
-        mask = counts{j} < n_threshold_for_save;
-        mean_of_data{j}(mask) = NaN;
-    end
+    % n_threshold_for_save = 1; % super-parameter
+    % for j = 1:n_regions
+    %     mask = counts{j} < n_threshold_for_save;
+    %     mean_of_data{j}(mask) = NaN;
+    % end
 
 end
 

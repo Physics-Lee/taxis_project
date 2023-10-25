@@ -1,5 +1,7 @@
-% split path length into small bins and calculate mean and SEM 
-% in each small bin of path length
+% Split path length into small bins and calculate mean and SEM 
+% in each small bin of path length.
+%
+% If a bin contains no data, the mean and SEM will be NaN.
 %
 % 2023-09-26, Yixuan Li
 %
