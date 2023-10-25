@@ -1,10 +1,10 @@
 clear;clc;close all;
 
-common_prefix = 'F:\1_learning\research\taxis of C.elegans\data analysis of Colbert\result\run_disp_smoothed_downsampled_smoothed';
-path = uigetdir(common_prefix);
+root_folder_path = 'F:\1_learning\research\taxis of C.elegans\Colbert\data';
+path = uigetdir(root_folder_path);
 if path ~= 0
-    list = get_all_files_of_a_certain_type_in_a_rootpath(path,'*.mat');
-    [indx,tf] = listdlg('ListString',list,'ListSize',[800,600],'Name','Chose files to convert');
+    list = get_all_files_of_a_certain_name_pattern_in_a_rootpath(path,'*.mat');
+    [indx,tf] = listdlg('ListString',list,'ListSize',[800,600],'Name','Chose files');
     if tf == 1
 
         % init
@@ -20,10 +20,10 @@ if path ~= 0
 
             % v
             v = calculate_v(run_disp_all);
-            v_all = [v_all; {v, process_full_path(full_path,common_prefix)}];
+            v_all = [v_all; {v, process_full_path(full_path,root_folder_path)}];
 
             % index
-            index_all = three_index_for_ortho(index_all, run_disp_all, full_path, common_prefix);
+            index_all = three_index_for_ortho(index_all, run_disp_all, full_path, root_folder_path);
 
         end
 

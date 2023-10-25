@@ -31,7 +31,7 @@ if path ~= 0
 
             % load run disp
             full_path = list{i};
-            load(full_path);
+            run_disp = load_data_from_mat(full_path);
 
             % create a sub-folder for savings
             full_path_of_eset = fileparts(fileparts(full_path));

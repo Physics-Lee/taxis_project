@@ -38,7 +38,7 @@ if path ~= 0
             switch type_of_run_disp
                 case "all_worms"
                     save_folder_path = fullfile(father_folder_path,'run_disp_of_all_worms');
-                    save_file_name = [char(substr) '.mat'];
+                    save_file_name = 'run_disp_of_all_worms.mat';
                 case "all_tracks"
                     save_folder_path = fullfile(father_folder_path,'run_disp_of_all_tracks');
                     save_file_name = 'run_disp_of_all_tracks.mat';
