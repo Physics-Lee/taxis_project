@@ -1,10 +1,17 @@
 clear;clc;close all;
 
+dbstop if error;
+
+% set root folder path
 root_folder_path = 'F:\1_learning\research\taxis of C.elegans\Colbert\data';
+
+% use GUI to choose .mat files
 path = uigetdir(root_folder_path);
+
+% if choose a folder
 if path ~= 0
-    list = get_all_files_of_a_certain_name_pattern_in_a_rootpath(path,'*.mat');
-    [indx,tf] = listdlg('ListString',list,'ListSize',[800,600],'Name','Chose files');
+    list = get_all_files_of_a_certain_name_pattern_in_a_rootpath(path,'run_disp_of_worm_*.mat');
+    [indx,tf] = listdlg('ListString',list,'ListSize',[800,600],'Name','Choose files');
     if tf == 1
 
         % init
