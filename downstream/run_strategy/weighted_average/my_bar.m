@@ -1,22 +1,34 @@
-function my_bar(index_table,y_label_str,file_name)
+% plot bar and error-bar
+%
+% 2023-10-25, Yixuan Li
+%
 
-weighted_average = index_table.weighted_average;
-weighted_std = index_table.weighted_std;
+function my_bar(measure_table,y_label_str,measure_str)
+
+weighted_average = measure_table.weighted_average;
+weighted_std = measure_table.weighted_std;
+
+% plot bar
+figure;
+hold on;
 barHandle = bar(weighted_average);
-xlabel('exp');
-ylabel(y_label_str);
-xticks(1:length(weighted_average));
-xticklabels(index_table.full_path);
 
+% plot error-bar
 x = barHandle.XData + barHandle.XOffset;
 y = weighted_average;
 e = weighted_std;
-hold on
 errorbar(x, y, e, 'k', 'linestyle', 'none');
 
-folder_path = 'F:\1_learning\research\taxis of C.elegans\data analysis of Colbert\result\weighted average\bar';
-file_path = fullfile(folder_path, file_name);
-% saveas(gcf,file_path,'png');
-% close;
+% label and tick
+xlabel('track or worm');
+ylabel(y_label_str);
+xticks(1:length(weighted_average));
+xticklabels(measure_table.info);
+
+% lim
+ylim([0,0.2]); % mm/s
+
+% full screen
+% set(gcf, 'WindowState', 'maximized');
 
 end

@@ -1,3 +1,16 @@
+% Calculate the weighted average of each track or worm.
+%
+% You must choose a folder containing the run_disp.mat of tracks or worms.
+%
+% Save the mat of the mean.
+%
+% option_measure: "velocity", "index"
+%
+% index = cos_to_ideal * tortuosity
+%
+% 2023-10-25, Yixuan Li
+%
+
 clear;clc;close all;
 
 dbstop if error;
@@ -23,23 +36,32 @@ if path ~= 0
 
             % load
             full_path = list{i};
-            run_disp_all = load_struct(full_path);
+            run_disp = load_struct(full_path);
 
-            % v
-            v = calculate_v(run_disp_all);
-            v_all = [v_all; {v, process_full_path(full_path,root_folder_path)}];
+            % for save
+            [folder_path,file_name,~] = fileparts(full_path);
+
+            % calculate v
+            v = calculate_v(run_disp);
+
+            % save
+            info_str = strrep(file_name,'_',' ');
+            info_str = strrep(info_str,' corrected','');
+            v_all = [v_all; {v, info_str}];
 
             % index
-            index_all = three_index_for_ortho(index_all, run_disp_all, full_path, root_folder_path);
+            % index_all = three_index_for_ortho(index_all, run_disp, full_path, root_folder_path);
 
         end
 
         % calculate weighted average
         v_table = my_cell2table(v_all);
-        index_table = my_cell2table(index_all);
+        measure_str = 'v';
+        my_bar(v_table,"v (mm/s)",measure_str);
 
-        my_bar(v_table,"v(mm/s)","v");
-        my_bar(index_table,"index","index");
+        index_table = my_cell2table(index_all);
+        measure_str = 'index';
+        my_bar(index_table,"index",measure_str);
 
     end
 end
@@ -82,20 +104,9 @@ index_all = [index_all; {index, process_full_path(full_path,common_prefix)}];
 
 end
 
-function v_table = my_cell2table(v_all)
+function full_path = process_full_path(full_path,root_folder_path)
 
-weighted_average = calculate_weighted_average(v_all);
-weighted_std = calculate_weighted_std(v_all);
-v_all = [v_all num2cell(weighted_average) num2cell(weighted_std)];
-
-header = {'measure', 'full_path', 'weighted_average', 'weighted_std'};
-v_table = cell2table(v_all, 'VariableNames', header);
-
-end
-
-function full_path = process_full_path(full_path,common_prefix)
-
-full_path = strrep(full_path,common_prefix,'');
+full_path = strrep(full_path,root_folder_path,'');
 
 full_path = strrep(full_path,'.mat','');
 

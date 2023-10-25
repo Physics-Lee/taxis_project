@@ -1,5 +1,7 @@
 % calculate the weighted standard deviation of a certain measure.
 %
+% the denominator is n, not (n-1)
+%
 % 2023-10-25, Yixuan Li
 %
 
