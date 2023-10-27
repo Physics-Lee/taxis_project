@@ -45,17 +45,17 @@ path = uigetdir;
 if path ~= 0
 
     % choose type of run disp
-    type_of_run_disp = "each_worm";
+    type_of_run_disp = "each_track";
     switch type_of_run_disp
         case "each_worm"
             name_pattern = 'run_disp_of_worm_*.mat';
-            is_save_fig = true;
+            is_save_fig = false;
         case "all_worms"
             name_pattern = '*.mat';
             is_save_fig = true;
         case "each_track"
             name_pattern = 'run_disp_of_track_*.mat';
-            is_save_fig = true;
+            is_save_fig = false;
         case "all_tracks"
             name_pattern = 'run_disp_of_all_tracks.mat';
             is_save_fig = true;
