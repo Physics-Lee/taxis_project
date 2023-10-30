@@ -11,7 +11,7 @@ clear;clc;close all;
 
 dbstop if error;
 
-option_measure = "velocity";
+option_measure = "thermo-index";
 type_of_run_disp = "each_track";
 
 % use GUI to choose .mat files
@@ -111,7 +111,6 @@ if path ~= 0
         save(save_full_path,'weighted_average');
         
         %
-        boxplot(weighted_average);
-        boxplot(weighted_average, 'PlotStyle', 'traditional');
+        histogram(weighted_average);
     end
 end
