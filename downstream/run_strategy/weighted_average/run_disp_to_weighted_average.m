@@ -70,6 +70,10 @@ if path ~= 0
             % save
             measure_cell = [measure_cell; {measure, info_str}];
             
+            % plot the histogram of a single point capturing deviation for runs
+            %             histogram_of_a_single_point_capturing_deviation_of_runs(measure,...
+            %                 option_measure,folder_path_to_eset,i);
+            
         end
         
         % calculate weighted mean and std
@@ -105,5 +109,9 @@ if path ~= 0
         save_full_path = strcat(save_full_path,'.mat');
         weighted_average = measure_table.weighted_average;
         save(save_full_path,'weighted_average');
+        
+        %
+        boxplot(weighted_average);
+        boxplot(weighted_average, 'PlotStyle', 'traditional');
     end
 end

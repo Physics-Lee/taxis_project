@@ -144,7 +144,7 @@ saveas(gcf,save_full_path,'png');
 % close
 close;
 
-% %% plot histogram for a single point
+% %% plot histogram for a single point capturing deviation for worms/tracks
 % for x_critical = [0.5 1 2] % mm
 %     figure;
 %     for i = 1:n_regions

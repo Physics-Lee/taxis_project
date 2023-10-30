@@ -41,7 +41,7 @@ for i = 1:n_bins
     % get the measure for the current bin
     r = measure(sort_index(cum_counts(i)+1:cum_counts(i+1)));
 
-    % % distribution
+    % % plot histogram of a single point capturing deviation for branches
     % if ismember(i,n)
     %     figure;
     %     histogram(r);
