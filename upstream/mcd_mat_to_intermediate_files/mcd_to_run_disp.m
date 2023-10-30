@@ -1,3 +1,8 @@
+% from mcd to run disp.
+%
+% 2023-10-30, Yixuan Li
+%
+
 clear;clc;close all;
 
 dbstop if error;
@@ -53,7 +58,7 @@ if path ~= 0
             my_save(folder_path_of_mcd, 'disp_new', save_file_name, 'run_disp_smoothed_downsampled_smoothed', run_disp_smoothed_downsampled_smoothed);
             
             % plot
-            plot_run_and_save(run_disp_smoothed_downsampled_smoothed,f_sample,full_path_to_mcd);
+            plot_run_and_save(run_disp_smoothed_downsampled_smoothed,f_sample);
 
         end
     end

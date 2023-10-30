@@ -1,3 +1,8 @@
+% merge run disp of all worms within a group
+%
+% 2023-10-30, Yixuan Li
+%
+
 clear;clc;close all;
 
 path = uigetdir;
@@ -32,8 +37,7 @@ if path ~= 0
             run_disp_all = vertcat(run_disp_all{:});
 
             % save
-            % father_folder_path = fileparts(fileparts(fileparts(full_path)));
-            father_folder_path = fileparts(fileparts(full_path));
+            father_folder_path = fileparts(fileparts(fileparts(full_path)));
 
             switch type_of_run_disp
                 case "all_worms"
@@ -45,6 +49,7 @@ if path ~= 0
             end
             
             save_full_path = fullfile(save_folder_path,save_file_name);
+            create_folder(save_folder_path);
             save(save_full_path,'run_disp_all');
 
         end
