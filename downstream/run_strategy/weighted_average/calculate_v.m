@@ -19,17 +19,12 @@ for i = 1:n_runs
     points = run_disp{i};
     disp_vectors = (points(:, 2:end) - points(:, 1:end - 1));
     path_lengths = sqrt(sum(disp_vectors.^2, 1));
-    path_length_sum = sum(path_lengths);
-
-    % calculate t
+    path_length_sum = sum(path_lengths);    
+    
+    % calculate v,t and save
     n_frame = size(points,2);
     t = calculate_t(n_frame);
-
-    % calculate v
-    v = path_length_sum/t;
-
-    % save
-    v(i,1) = v;
+    v(i,1) = path_length_sum/t;
     v(i,2) = t;
 
 end

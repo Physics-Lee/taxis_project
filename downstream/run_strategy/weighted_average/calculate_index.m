@@ -26,13 +26,9 @@ for i = 1:n_runs
     cos_to_ideal = dot(disp_normalized, ideal_unit_vector);
     tortuosity = Euclid_distance / path_length_sum;
 
-    % calculate index and save
+    % calculate index,t and save
     index(i,1) = cos_to_ideal * tortuosity;
-
-    % calculate t and save
-    n_frame = size(points,2);
-    t = calculate_t(n_frame);
-    index(i,2) = t;
+    index(i,2) = calculate_t(size(points,2));
 
 end
 

@@ -3,10 +3,10 @@
 % 2023-10-25, Yixuan Li
 %
 
-function my_bar(measure_table,y_label_str,measure_str)
+function my_bar(measure_table,y_label_str,y_lim_range)
 
 weighted_average = measure_table.weighted_average;
-weighted_std = measure_table.weighted_std;
+weighted_SEM = measure_table.weighted_SEM;
 
 % plot bar
 figure;
@@ -16,19 +16,24 @@ barHandle = bar(weighted_average);
 % plot error-bar
 x = barHandle.XData + barHandle.XOffset;
 y = weighted_average;
-e = weighted_std;
+e = weighted_SEM;
 errorbar(x, y, e, 'k', 'linestyle', 'none');
 
-% label and tick
+% label
 xlabel('track or worm');
 ylabel(y_label_str);
-xticks(1:length(weighted_average));
-xticklabels(measure_table.info);
+
+% tick
+% xticks(1:length(weighted_average));
+% xticklabels(measure_table.info);
+
+% title
+title('error bar for SEM');
 
 % lim
-ylim([0,0.2]); % mm/s
+ylim(y_lim_range);
 
 % full screen
-% set(gcf, 'WindowState', 'maximized');
+set_full_screen;
 
 end
