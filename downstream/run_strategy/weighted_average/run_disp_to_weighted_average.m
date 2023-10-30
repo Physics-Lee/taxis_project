@@ -12,7 +12,7 @@ clear;clc;close all;
 dbstop if error;
 
 option_measure = "chemo-index-down";
-type_of_run_disp = "each_worm";
+type_of_run_disp = "each_track";
 
 % use GUI to choose .mat files
 path = uigetdir;
