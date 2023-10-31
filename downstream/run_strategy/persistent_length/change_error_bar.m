@@ -24,7 +24,8 @@ path = uigetdir;
 if path ~= 0
 
     % get full paths of files
-    name_pattern = 'cos___*pi_as_ideal___-pi___mean_of_data___run_disp_of_*';
+    % name_pattern = 'cos___*pi_as_ideal___-pi___mean_of_data___run_disp_of_*';
+    name_pattern = 'Delta_cos_Delta_theta_v2___-3_4_pi_as_ideal___-3_4_pi___mean_of_data___run_disp_of_track_*';
     list = get_all_files_of_a_certain_name_pattern_in_a_rootpath(path,name_pattern);
 
     % choose files

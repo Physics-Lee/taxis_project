@@ -82,6 +82,14 @@ for i = 1:n_runs
                             measure = Iino_curving_rate_v2(theta, path_length, j, k);
                         case "Iino_curving_rate_v3"
                             measure = Iino_curving_rate_v3(theta, path_length, j, k);
+                        case "Delta_Delta_theta"
+                            measure = Delta_Delta_theta(theta, j, k, ideal_theta);
+                        case "Delta_cos_Delta_theta"
+                            measure = Delta_cos_Delta_theta(theta, j, k, ideal_theta);
+                        case "Delta_Delta_theta_v2"
+                            measure = Delta_Delta_theta_v2(theta, j, k, ideal_theta);
+                        case "Delta_cos_Delta_theta_v2"
+                            measure = Delta_cos_Delta_theta_v2(theta, j, k, ideal_theta);
                         otherwise
                             error("Invalid measure option.");
                     end
@@ -137,10 +145,10 @@ measure = d/run_time;
 end
 
 function measure = Iino_curving_rate(theta, path_length, j, k, ideal_theta)
-delta_theta = my_diff_abs(theta(k),ideal_theta) - my_diff_abs(theta(j),ideal_theta); % delta-delta-theta
-delta_theta = rad2deg(delta_theta);
+Delta_theta = my_diff_abs(theta(k),ideal_theta) - my_diff_abs(theta(j),ideal_theta); % delta-delta-theta
+Delta_theta = rad2deg(Delta_theta);
 d = sum(path_length(j:k));
-measure = - delta_theta / d; % minu sign will make it more in line with habits.
+measure = - Delta_theta / d; % minu sign will make it more in line with habits.
 end
 
 function measure = Iino_curving_rate_v2(theta, path_length, j, k)
@@ -151,8 +159,32 @@ measure = delta_theta / d;
 end
 
 function measure = Iino_curving_rate_v3(theta, path_length, j, k)
-delta_theta = my_diff_abs(theta(j),theta(k)); % abs(delta-theta)/d
-delta_theta = rad2deg(delta_theta);
+Delta_theta = my_diff_abs(theta(j),theta(k)); % abs(delta-theta)/d
+Delta_theta = rad2deg(Delta_theta);
 d = sum(path_length(j:k));
-measure = delta_theta / d;
+measure = Delta_theta / d;
+end
+
+function measure = Delta_Delta_theta(theta, j, k, ideal_theta)
+measure = rad2deg(my_diff_abs(theta(k),ideal_theta) - my_diff_abs(theta(j),ideal_theta));
+end
+
+function measure = Delta_cos_Delta_theta(theta, j, k, ideal_theta)
+measure = cos(my_diff_abs(theta(k),ideal_theta)) - cos(my_diff_abs(theta(j),ideal_theta));
+end
+
+function measure = Delta_Delta_theta_v2(theta, j, k, ideal_theta)
+Delta_theta_1 = rad2deg(my_diff_abs(theta(j),ideal_theta));
+Delta_theta_2 = rad2deg(my_diff_abs(theta(k),ideal_theta));
+Delta_theta_1 = set_neighbor_to_0(Delta_theta_1);
+Delta_theta_2 = set_neighbor_to_0(Delta_theta_2);
+measure = Delta_theta_2 - Delta_theta_1;
+end
+
+function measure = Delta_cos_Delta_theta_v2(theta, j, k, ideal_theta)
+Delta_theta_1 = rad2deg(my_diff_abs(theta(j),ideal_theta));
+Delta_theta_2 = rad2deg(my_diff_abs(theta(k),ideal_theta));
+Delta_theta_1 = set_neighbor_to_0(Delta_theta_1);
+Delta_theta_2 = set_neighbor_to_0(Delta_theta_2);
+measure = cos(deg2rad(Delta_theta_2)) - cos(deg2rad(Delta_theta_1));
 end

@@ -5,7 +5,8 @@
 % Save the mat of the mean of branches.
 %
 % option_measure: "cos", "MSE", "tortuosity", "cos_to_ideal",
-% "MSE_to_ideal", "velocity", "Iino_curving_rate"
+% "MSE_to_ideal", "velocity", "Iino_curving_rate", "Delta_Delta_theta",
+% "Delta_cos_Delta_theta"
 %
 % option_partition_region: "-3/4*pi_as_ideal", "-pi_as_ideal", "-1/2*pi_as_ideal"
 %
@@ -31,7 +32,7 @@ is_Runhui_NC = false;
 n_threshold_for_save = 10;
 
 %% choose measure
-option_measure = "cos";
+option_measure = "Delta_cos_Delta_theta_v2";
 
 %% choose ideal theta
 option_ideal_theta = "-pi";
