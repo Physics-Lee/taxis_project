@@ -36,7 +36,7 @@ if path ~= 0
             create_folder(save_folder_path_1);
             create_folder(save_folder_path_2);
 
-            %% for run disps of the whole eset
+            %% for run disps of all tracks
 
             % extract
             run_disp = extract_run_disp_of_all_tracks(eset);

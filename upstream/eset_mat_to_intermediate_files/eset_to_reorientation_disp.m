@@ -1,6 +1,9 @@
-% extract run disps (mm) from esets and save them in the same folder
+% extract reorientation disps (mm) from esets and save them in the same folder
 %
-% 2023-09-26, Yixuan Li
+% Because I only want to see the distribution of reorientation time, only
+% saving reorienation disps of all tracks are OK.
+%
+% 2023-11-05, Yixuan Li
 %
 
 dbstop if error;
@@ -31,36 +34,21 @@ if path ~= 0
 
             % create save folder
             save_folder_path_0 = fileparts(full_path);
-            save_folder_path_1 = fullfile(save_folder_path_0,'run_disp_of_all_tracks');
-            save_folder_path_2 = fullfile(save_folder_path_0,'run_disp_of_each_track');
+            save_folder_path_1 = fullfile(save_folder_path_0,'reorientation_disp_of_all_tracks');
             create_folder(save_folder_path_1);
-            create_folder(save_folder_path_2);
 
-            %% for run disps of the whole eset
+            %% for reorientation disps of all tracks
 
             % extract
-            run_disp = extract_run_disp(eset);
+            reorientation_disp = extract_reorientation_disp_of_all_tracks(eset);
 
             % save
-            save_file_name = 'run_disp_of_all_tracks.mat';
+            save_file_name = 'reorientation_disp_of_all_tracks.mat';
             save_full_path = fullfile(save_folder_path_1, save_file_name);
-            save(save_full_path,'run_disp');
-
-            %% for run disps of each track
-
-            % extract
-            run_disp_of_all_tracks = extract_run_disp_of_each_eset(eset);
-
-            % save
-            for j = 1:size(run_disp_of_all_tracks,1)
-                run_disp = run_disp_of_all_tracks{j,1};
-                save_file_name = sprintf('run_disp_of_track_%d.mat',j);
-                save_full_path = fullfile(save_folder_path_2, save_file_name);
-                save(save_full_path,'run_disp');
-            end
+            save(save_full_path,'reorientation_disp');
 
             %% disp
-            disp('run_disp.mat saved successfully!');
+            disp('reorientation_disp.mat saved successfully!');
 
         end
     end
