@@ -10,7 +10,7 @@ function add_linear_fit(time_of_disp, edges)
 %% Least Square
 
 % get y_data
-[y_data, bin_edges] = histcounts(time_of_disp, edges(2:end-1), 'Normalization', 'probability');
+[y_data, bin_edges] = histcounts(time_of_disp, edges(2:end-1), 'Normalization', 'pdf');
 
 % get bin centers
 bin_centers = (bin_edges(1:end-1) + bin_edges(2:end))/2;
@@ -39,7 +39,8 @@ h_fit = semilogy(bin_centers, exp(y_predict), 'r-');
 
 % legend
 slope = fit_coeffs(1);
-legend([h_scatter, h_fit], 'y data', sprintf('Least Square, slope: %.2f', slope));
+intercept = fit_coeffs(2);
+legend([h_scatter, h_fit], 'Data Points', sprintf('Slope: %.2f, Intercept: %.2f', slope, intercept));
 
 % text
 text(0.8, 0.8, ['R^2 = ' num2str(r_squared)], 'Units', 'normalized');

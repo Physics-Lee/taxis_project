@@ -65,12 +65,12 @@ if path ~= 0
 
             % plot
             figure;
-            histogram(time_of_disp,edges,'Normalization','probability');
+            histogram(time_of_disp,edges,'Normalization','pdf');
             xlabel('time (s)');
-            ylabel('probability');
+            ylabel('pdf');
             title(title_str);
             xlim(x_lim_range);
-            ylim(y_lim_range);
+            % ylim(y_lim_range);
 
             % save
             save_file_name = title_str;
