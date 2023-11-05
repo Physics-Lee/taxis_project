@@ -33,8 +33,8 @@ if path ~= 0
             load(full_path);
 
             % create save folder
-            save_folder_path_0 = fileparts(full_path);
-            save_folder_path_1 = fullfile(save_folder_path_0,'reorientation_disp_of_all_tracks');
+            folder_path_to_eset = fileparts(full_path);
+            save_folder_path_1 = fullfile(folder_path_to_eset,'reorientation_disp_of_all_tracks');
             create_folder(save_folder_path_1);
 
             %% for reorientation disps of all tracks
