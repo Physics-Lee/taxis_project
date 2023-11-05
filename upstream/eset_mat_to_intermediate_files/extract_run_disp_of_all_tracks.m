@@ -1,9 +1,9 @@
-% extract run disps (mm) from an eset
+% extract run disps (mm) of all tracks from an eset
 %
 % 2023-09-26, Yixuan Li
 %
 
-function run_disp = extract_run_disp(eset)
+function run_disp = extract_run_disp_of_all_tracks(eset)
 
 run_disp = {};
 

@@ -3,7 +3,7 @@
 % 2023-09-26, Yixuan Li
 %
 
-function run_disp_of_all_tracks = extract_run_disp_of_each_eset(eset)
+function run_disp_of_all_tracks = extract_run_disp_of_each_track(eset)
 
 % init
 run_disp_of_all_tracks = {};

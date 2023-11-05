@@ -39,7 +39,7 @@ if path ~= 0
             %% for run disps of the whole eset
 
             % extract
-            run_disp = extract_run_disp_of_all_tracks(eset);
+            run_disp = extract_run_disp(eset);
 
             % save
             save_file_name = 'run_disp_of_all_tracks.mat';
@@ -49,7 +49,7 @@ if path ~= 0
             %% for run disps of each track
 
             % extract
-            run_disp_of_all_tracks = extract_run_disp_of_each_track(eset);
+            run_disp_of_all_tracks = extract_run_disp_of_each_eset(eset);
 
             % save
             for j = 1:size(run_disp_of_all_tracks,1)
