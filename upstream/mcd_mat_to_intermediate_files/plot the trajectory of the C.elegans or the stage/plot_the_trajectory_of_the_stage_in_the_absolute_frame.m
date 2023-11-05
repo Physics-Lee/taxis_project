@@ -1,3 +1,8 @@
+% plot_the_trajectory_of_the_stage_in_the_absolute_frame
+%
+% 2023-11-05, Yixuan Li
+%
+
 function plot_the_trajectory_of_the_stage_in_the_absolute_frame(mcd,start_frame,end_frame,fps,save_folder_path)
 
 unit2um = 0.05;

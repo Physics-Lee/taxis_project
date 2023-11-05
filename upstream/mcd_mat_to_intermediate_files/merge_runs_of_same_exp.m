@@ -30,21 +30,21 @@ if path ~= 0
             run_disp_all = cell(n,1);
             for i = indx
                 full_path = list_screened{i};
-                run_disp_all{i} = load_struct(full_path);
+                run_disp_all{i} = load_data_from_mat(full_path);
             end
 
             % concatenate
             run_disp_all = vertcat(run_disp_all{:});
 
             % save
-            father_folder_path = fileparts(fileparts(fileparts(full_path)));
+            folder_path_to_eset = fileparts(fileparts(fileparts(full_path)));
 
             switch type_of_run_disp
                 case "all_worms"
-                    save_folder_path = fullfile(father_folder_path,'run_disp_of_all_worms');
+                    save_folder_path = fullfile(folder_path_to_eset,'run_disp_of_all_worms');
                     save_file_name = 'run_disp_of_all_worms.mat';
                 case "all_tracks"
-                    save_folder_path = fullfile(father_folder_path,'run_disp_of_all_tracks');
+                    save_folder_path = fullfile(folder_path_to_eset,'run_disp_of_all_tracks');
                     save_file_name = 'run_disp_of_all_tracks.mat';
             end
             

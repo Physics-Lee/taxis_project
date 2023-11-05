@@ -1,4 +1,4 @@
-% only plot run disp, no reoriention disp.
+% plot run
 %
 % 2023-11-05, Yixuan Li
 %

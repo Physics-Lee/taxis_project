@@ -1,3 +1,8 @@
+% plot_the_trajectory_of_the_C_elegan_in_the_absolute_frame
+%
+% 2023-11-05, Yixuan Li
+%
+
 function plot_the_trajectory_of_the_C_elegan_in_the_absolute_frame(mcd,start_frame,end_frame,fps,folder_path)
 
 global pixel2um unit2um

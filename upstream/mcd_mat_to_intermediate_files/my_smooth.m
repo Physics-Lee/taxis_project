@@ -1,3 +1,8 @@
+% smooth-downsample-smooth
+%
+% 2023-11-05, Yixuan Li
+%
+
 function run_disp_smoothed_downsampled_smoothed = my_smooth(run_disp)
 
 % smooth

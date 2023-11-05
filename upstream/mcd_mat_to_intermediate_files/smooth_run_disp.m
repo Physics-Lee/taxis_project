@@ -1,3 +1,8 @@
+% smooth using movmean
+%
+% 2023-11-05, Yixuan Li
+%
+
 function run_disp_smoothed = smooth_run_disp(run_disp,window_size)
 
 n = length(run_disp);

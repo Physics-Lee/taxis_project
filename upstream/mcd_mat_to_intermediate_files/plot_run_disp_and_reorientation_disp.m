@@ -1,6 +1,9 @@
-function plot_run_disp_and_reorientation_disp(run_disp_merged,reorientation_disp_merged,f_sample)
+% plot run and reorientation
+%
+% 2023-11-05, Yixuan Li
+%
 
-% plot disp of both run and reorientation
+function plot_run_disp_and_reorientation_disp(run_disp_merged,reorientation_disp_merged,f_sample)
 
 figure;
 hold on;

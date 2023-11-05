@@ -39,7 +39,7 @@ if path ~= 0
 
             % smooth
             run_disp = my_smooth(run_disp);
-            reorientation_disp = my_smooth(run_disp);
+            reorientation_disp = my_smooth(reorientation_disp);
 
             % plot
             f_sample = 2; % Hz
@@ -51,7 +51,7 @@ if path ~= 0
             save_file_name_1 = strcat('run_disp_of_',worm_str,'.mat');
             save_file_name_2 = strcat('reorientation_disp_of_',worm_str,'.mat');
             my_save(folder_path_of_mcd, 'run_disp', save_file_name_1, 'run_disp', run_disp);
-            my_save(folder_path_of_mcd, 'reorientation_disp', save_file_name_2, 'reorientation_disp', run_disp);
+            my_save(folder_path_of_mcd, 'reorientation_disp', save_file_name_2, 'reorientation_disp', reorientation_disp);
 
         end
     end

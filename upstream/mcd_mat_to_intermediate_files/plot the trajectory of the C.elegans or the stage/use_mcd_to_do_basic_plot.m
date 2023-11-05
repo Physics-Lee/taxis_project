@@ -1,3 +1,8 @@
+% some basic plots for mcd.mat
+%
+% 2023-11-05, Yixuan Li
+%
+
 clear;clc;close all;
 
 path = uigetdir;
