@@ -2,6 +2,8 @@
 %
 % SS means Sum of Square
 %
+% use pdf, instead of probability, to get lambda in the future.
+%
 % 2023-11-05, Yixuan Li
 %
 
