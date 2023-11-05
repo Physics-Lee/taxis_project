@@ -1,6 +1,9 @@
-function plot_run_disp(run_disp_merged,f_sample,color,legend_str)
-
 % only plot run disp, no reoriention disp.
+%
+% 2023-11-05, Yixuan Li
+%
+
+function plot_run_disp(run_disp_merged,f_sample,color,legend_str)
 
 figure;
 x = run_disp_merged(1,:);
