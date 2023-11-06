@@ -53,11 +53,16 @@ if path ~= 0
             % get taxis type
             option_taxis = get_taxis_type_by_full_path(full_path);
 
+            % Runhui NC
+            % option_taxis = "NC_Runhui";
+
             % get Delta theta | theta in
             [Delta_theta_regions{1:4}] = allocate_angles_to_4_regions(option_taxis,theta_out_of_runs(1:end-1),Delta_theta);
 
             % plot f(Delta theta|theta in)
             for region = 1:4
+
+                % get data
                 Delta_theta_region = Delta_theta_regions{region};
 
                 % Create a histogram for f(Delta theta|theta in) in the current region
@@ -83,9 +88,6 @@ if path ~= 0
                 close;
 
             end
-
-
-
         end
     end
 end
