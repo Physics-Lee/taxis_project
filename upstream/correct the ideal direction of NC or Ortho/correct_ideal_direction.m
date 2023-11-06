@@ -1,3 +1,8 @@
+% Correct the ideal direction for Colbert data
+%
+% 2023-11-06, Yixuan Li
+%
+
 clc;clear;close all;
 
 path = uigetdir;
