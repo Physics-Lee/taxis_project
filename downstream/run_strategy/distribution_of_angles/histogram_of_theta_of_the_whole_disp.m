@@ -1,4 +1,4 @@
-% plot histograms of theta of the whole disp of a run
+% plot histograms of the disp angle of the whole disp of a run
 %
 % 2023-10-02, Yixuan Li
 %
@@ -30,7 +30,7 @@ if path ~= 0
         % loop to process each file
         for i = indx
 
-            %% plot histograms of f(disp angle)
+            %% f(disp angle)
 
             % load run disp
             full_path = list{i};
@@ -71,7 +71,7 @@ if path ~= 0
 
             close all;
 
-            %% plot histograms of f(disp angle|theta in)
+            %% f(disp angle|theta in)
 
             % get taxis type
             option_taxis = get_taxis_type_by_full_path(full_path);
@@ -85,7 +85,7 @@ if path ~= 0
             % get data
             [disp_angle_vector_regions{1:4}] = allocate_angles_to_4_regions(option_taxis,theta_in,disp_angle_cell);
 
-            % plot f(theta|theta in)
+            % plot
             for region = 1:4
                 theta_region = disp_angle_vector_regions{region};
                 theta_region = to_360(theta_region);

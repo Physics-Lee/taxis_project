@@ -7,7 +7,7 @@
 % 2023-09-30, Yixuan Li
 %
 
-function run_delta_theta_cell = calculate_delta_theta_between_n_frames(run_theta_cell,n_frame)
+function run_delta_theta_cell = calculate_Delta_theta_between_n_frames(run_theta_cell,n_frame)
 
 n_1 = length(run_theta_cell);
 run_delta_theta_cell = cell(n_1,1);

@@ -7,7 +7,7 @@
 % 2023-10-13, Yixuan Li
 %
 
-function create_histogram_semilogy(data, n_edges,~, xlabel_str, title_str, full_path, y_lim)
+function create_histogram_semilogy(data, n_edges,~, xlabel_str, title_str, full_path, ~)
 
 % Divide data into positive and negative subsets
 data_pos = data(data >= 0); % Consider non-negative values as positive
