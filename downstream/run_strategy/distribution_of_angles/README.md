@@ -8,7 +8,7 @@ This angles are the basis of further analysis, so it is very important to know i
 
 # Problems of Conditional Frequency
 
-All analysis about $f(blah|\theta_{in})$ can't be trusted, because a run with $\theta_{in}$ in certain region can quickly be into another region.
+**All analysis about $f(blah|\theta_{in})$ can't be trusted, because a run with $\theta_{in}$ in certain region can quickly be into another region.**
 
 This is also the reason why
 
@@ -31,4 +31,3 @@ This is also the reason why
   * can be used to label shallow turn, although this is a bad method.
   * shows consistency with persistent length.
   * tell us SMD and RMD runs straighter.
-

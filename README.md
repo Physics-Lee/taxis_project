@@ -33,10 +33,18 @@ For the Colbert system:
 * `run_strategy`
   * `distribution_of_angles`: plot the distribution of all the angles of runs that you could ever imagine.
   * `persistent_length`: persistent length analysis, first use `run_disp_to_persistent_length`, then `change_error_bar`.
+  * `weighted average`: Calculate weighted average of a certain measure of runs instead of arithmetic average.
 * `reorientation_strategy`
+  * `Poisson process`: plot the distribution of inter-incident-interval, to see if run follows Poisson process and if reorientation follows.
+  * `biased reorientation`: plot the distribution of $\Delta \theta$ of reorientations.
 * `deprecated`: codes that are not in use now, but may be useful in the future.
 
 
 
 ## utils
 
+utils contains some tool-like funcitons and scripts.
+
+* `general` contains tools for general purposes, like moving files, deleting files and Tukey test.
+* `for_taxis_project` contains tools for this project, like screening data, `from_points_to_theta` and `use_circle_to_test_persistent_length`.
+* `for_Colbert` contains tools for processing Colbert data, like getting centerlines and calculating the curvature.

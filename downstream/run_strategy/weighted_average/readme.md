@@ -1,1 +1,0 @@
-Calculate weighted average of a certain measure of runs instead of arithmetic average.
