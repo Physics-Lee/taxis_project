@@ -11,7 +11,7 @@ clear;clc;close all;
 
 dbstop if error;
 
-option_measure = "chemo-index-down";
+option_measure = "chemo-index-left";
 type_of_run_disp = "each_track";
 
 % use GUI to choose .mat files
@@ -38,7 +38,7 @@ if path ~= 0
 
             % load
             full_path = list{i};
-            run_disp = load_struct(full_path);
+            run_disp = load_data_from_mat(full_path);
 
             % for save
             [folder_path,file_name,~] = fileparts(full_path);
