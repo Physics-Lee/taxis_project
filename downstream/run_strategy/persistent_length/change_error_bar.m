@@ -145,18 +145,6 @@ save_full_path = fullfile(save_folder_path,save_file_name);
 saveas(gcf,save_full_path,'fig');
 saveas(gcf,save_full_path,'png');
 
-% % semilogy
-% errorbar_semilogy;
-% save_file_name = 'error_bar_for_different_tracks_semilogy';
-% save_full_path = fullfile(save_folder_path,save_file_name);
-% saveas(gcf,save_full_path,'png');
-%
-% % loglog
-% errorbar_loglog;
-% save_file_name = 'error_bar_for_different_tracks_loglog';
-% save_full_path = fullfile(save_folder_path,save_file_name);
-% saveas(gcf,save_full_path,'png');
-
 % close
 close;
 
