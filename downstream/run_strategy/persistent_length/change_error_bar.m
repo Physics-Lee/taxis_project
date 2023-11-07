@@ -148,33 +148,5 @@ saveas(gcf,save_full_path,'png');
 % close
 close;
 
-% %% plot histogram for a single point capturing deviation for worms/tracks
-% for x_critical = [0.5 1 2] % mm
-%     figure;
-%     for i = 1:n_regions
-%         if i > 4
-%             % Stop if we have more than 4 regions since we're plotting only a 2x2 grid
-%             break;
-%         end
-%
-%         % plot
-%         subplot(2,2,i);
-%         test = data_3D_array(:,i,round(x_critical/step_size));
-%         histogram(test);
-%         xlabel('$cos(\theta)$', 'Interpreter', 'latex');
-%         ylabel('count');
-%         title(from_index_to_color(i));
-%         xlim([-1 +1]);
-%     end
-%
-%     % save
-%     save_folder_path_new = fullfile(save_folder_path,'histogram of a single point in persistent lenght with error bar for branches');
-%     create_folder(save_folder_path_new);
-%     save_file_name = [num2str(x_critical) 'mm.png'];
-%     save_full_path = fullfile(save_folder_path_new,save_file_name);
-%     saveas(gcf,save_full_path,'png');
-%     close;
-% end
-
 % disp end
 disp('<<<END>>>');
