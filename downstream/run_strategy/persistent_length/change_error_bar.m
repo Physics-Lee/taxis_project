@@ -15,6 +15,9 @@ data_cell_array = {};
 %% if Runhui's NC
 is_Runhui_NC = false;
 
+%% choose measure
+option_measure = "Delta_cos_Delta_theta_v2";
+
 %% choose files to analyze
 
 % chose the folder to analyze
@@ -24,8 +27,12 @@ path = uigetdir;
 if path ~= 0
 
     % get full paths of files
-    % name_pattern = 'cos___*pi_as_ideal___-pi___mean_of_data___run_disp_of_*';
-    name_pattern = 'Delta_cos_Delta_theta_v2___-3_4_pi_as_ideal___-3_4_pi___mean_of_data___run_disp_of_track_*';
+    switch option_measure
+        case "cos"
+            name_pattern = 'cos___*___*___mean_of_data___run_disp_of_*';
+        case "Delta_cos_Delta_theta_v2"
+            name_pattern = 'Delta_cos_Delta_theta_v2___-3_4_pi_as_ideal___-3_4_pi___mean_of_data___run_disp_of_*';
+    end
     list = get_all_files_of_a_certain_name_pattern_in_a_rootpath(path,name_pattern);
 
     % choose files
@@ -102,6 +109,14 @@ title(title_str);
 xlim([0.2,2]);
 ylim([0,1]);
 
+switch option_measure
+    case "cos"
+        name_pattern = 'cos___*___*___mean_of_data___run_disp_of_*';
+    case "Delta_cos_Delta_theta_v2"
+        name_pattern = 'Delta_cos_Delta_theta_v2___-3_4_pi_as_ideal___-3_4_pi___mean_of_data___run_disp_of_*';
+end
+
+
 % add legend
 option_taxis = get_taxis_type_by_full_path(full_path);
 switch option_taxis
@@ -125,7 +140,7 @@ save_folder_path = fileparts(full_path);
 save_folder_path = fileparts(save_folder_path);
 save_folder_path = fullfile(save_folder_path,'persistent_length_error_bar_for_tracks');
 create_folder(save_folder_path);
-save_file_name = 'error_bar_for_different_tracks';
+save_file_name = strcat('error_bar_for_different_tracks','_',option_measure);
 save_full_path = fullfile(save_folder_path,save_file_name);
 saveas(gcf,save_full_path,'fig');
 saveas(gcf,save_full_path,'png');

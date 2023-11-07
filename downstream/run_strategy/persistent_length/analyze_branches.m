@@ -7,7 +7,7 @@
 % order.
 %
 % correlation is "cos", "MSE", "tortuosity", "cos_to_ideal",
-% "MSE_to_ideal", "velocity" or "Iino_curving_rate"
+% "MSE_to_ideal", "velocity", "Iino_curving_rate" etc.
 %
 % path_length is the path length of each run.
 %
