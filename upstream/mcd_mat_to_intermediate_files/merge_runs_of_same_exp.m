@@ -7,13 +7,13 @@ clear;clc;close all;
 
 path = uigetdir;
 
-type_of_run_disp = "all_worms";
+type_of_run_disp = "all_tracks";
 
 if path ~= 0
 
     list = get_all_files_of_a_certain_type_in_a_rootpath(path,'run_disp_*.mat');
 
-    for substr = ["Ctl" "NC" "NT" "Or"]
+    for substr = ["Ctl" "NC" "NT" "Or" "ortho"]
 
         list_screened = screen_list(list,substr);
 

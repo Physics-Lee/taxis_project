@@ -1,13 +1,11 @@
-% extract run disps (mm) of all tracks (only the first half of an exp) from an eset
+% extract run disps (mm) of all tracks (only the second half of an exp) from an eset
 %
 % 2023-11-05, Yixuan Li
 %
 
-function [run_disp_first_half_of_an_exp,mask] = extract_run_disp_first_half_of_an_exp(eset)
+function run_disp = extract_run_disp_of_all_tracks_second_half_of_an_exp(eset)
 
-run_disp_first_half_of_an_exp = cell(1,1);
-count = 0;
-mask = [];
+run_disp = {};
 
 for i = 1:length(eset.expt)
 
@@ -25,13 +23,10 @@ for i = 1:length(eset.expt)
             for k = 1:length(track.run)
                 run = track.run(k);
                 if screen_a_run(run)
-                    mask(end+1) = 0;
                     start_ind = run.startInd;
                     end_ind = run.endInd;
-                    if start_ind + track.startFrame <= half_ind
-                        mask(end) = 1;
-                        count = count + 1;
-                        run_disp_first_half_of_an_exp{count,1} = run.track.dq.displacement(:,start_ind:end_ind);
+                    if start_ind + track.startFrame > half_ind
+                        run_disp{end+1,1} = run.track.dq.displacement(:,start_ind:end_ind) / 22;
                     end
                 end
             end

@@ -32,7 +32,7 @@ is_Runhui_NC = false;
 n_threshold_for_save = 10;
 
 %% choose measure
-option_measure = "Delta_cos_Delta_theta";
+option_measure = "cos";
 
 %% choose ideal theta
 option_ideal_theta = "-3/4*pi";
@@ -46,7 +46,7 @@ path = uigetdir;
 if path ~= 0
 
     % choose type of run disp
-    type_of_run_disp = "all_worms";
+    type_of_run_disp = "each_track";
     switch type_of_run_disp
         case "each_worm"
             name_pattern = 'run_disp_of_worm_*.mat';

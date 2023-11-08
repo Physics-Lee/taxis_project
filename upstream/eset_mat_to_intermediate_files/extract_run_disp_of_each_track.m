@@ -11,6 +11,7 @@ run_disp_of_all_tracks = {};
 % loop to get run disp of all tracks
 for i = 1:length(eset.expt)
     for j = 1:length(eset.expt(i).track)
+        
         if screen_a_track(eset.expt(i).track(j))
 
             % init
