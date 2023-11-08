@@ -28,6 +28,7 @@ if path ~= 0
     end
 
     [indx,tf] = listdlg('ListString',list,'ListSize',[800,600],'Name','Choose files');
+    
     if tf == 1
 
         % init

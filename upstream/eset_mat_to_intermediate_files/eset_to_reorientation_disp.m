@@ -34,8 +34,8 @@ if path ~= 0
 
             % create save folder
             folder_path_to_eset = fileparts(full_path);
-            save_folder_path_1 = fullfile(folder_path_to_eset,'reorientation_disp_of_all_tracks');
-            create_folder(save_folder_path_1);
+            save_folder_path = fullfile(folder_path_to_eset,'reorientation_disp_of_all_tracks');
+            create_folder(save_folder_path);
 
             %% for reorientation disps of all tracks
 
@@ -44,7 +44,7 @@ if path ~= 0
 
             % save
             save_file_name = 'reorientation_disp_of_all_tracks.mat';
-            save_full_path = fullfile(save_folder_path_1, save_file_name);
+            save_full_path = fullfile(save_folder_path, save_file_name);
             save(save_full_path,'reorientation_disp');
 
             %% disp
