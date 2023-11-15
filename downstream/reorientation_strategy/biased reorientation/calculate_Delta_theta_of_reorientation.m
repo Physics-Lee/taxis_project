@@ -1,4 +1,4 @@
-function [theta_in,theta_out,Delta_theta] = calculate_Delta_theta(run_disp)
+function [theta_in,theta_out,Delta_theta] = calculate_Delta_theta_of_reorientation(run_disp)
 
 % init
 n = length(run_disp);

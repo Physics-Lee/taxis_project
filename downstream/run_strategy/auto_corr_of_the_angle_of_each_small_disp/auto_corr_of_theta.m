@@ -42,24 +42,55 @@ if path ~= 0
                 %% auto-corr
                 max_lag = max_frame - 1; % frames
                 acf_cell = cellfun(@(x) autocorr(x, max_lag), theta_cell_filted, 'UniformOutput', false);
-                matrix_acf = cell2mat(acf_cell);
-                average_acf = mean(matrix_acf, 1);
-                t = (0:max_lag)/2; % s
+
+                % % plot
+                % figure;
+                % hold on;
+                % xlabel('t (s)');
+                % ylabel('auto correlation');
+                % title('Error Bar for Runs');
+                % subtitle(sprintf('percentage of remaining runs: %.2f',length(run_disp_filted)/length(run_disp)));
+                % average_and_plot_auto_corr(acf_cell,max_lag,'blue');
+                % save_file_name = sprintf("max_frame_%d",max_frame);
+                % 
+                % % save
+                % save_full_path = fullfile(save_folder_path,save_file_name);
+                % saveas(gcf,save_full_path,'png');
+
+                %% auto-corr of 4 regions
+
+                % get taxis type
+                option_taxis = get_taxis_type_by_full_path(full_path);
+
+                % get theta_in
+                theta_in = cellfun(@(x) x(1), theta_cell_filted);
+
+                % get auto-corr | theta in
+                [acf_cell_regions{1:4}] = allocate_angles_to_4_regions_and_remain_cell_array(option_taxis,theta_in,acf_cell);
+
+                % plot
+
+                color_strings = {'black', 'red', 'blue', 'cyan'};
 
                 figure;
                 hold on;
-                plot(t, average_acf, 'blue-o');
                 xlabel('t (s)');
                 ylabel('auto correlation');
-                title('auto corr of theta of each small disp of runs');
+                title('Error Bar for Runs');
                 subtitle(sprintf('percentage of remaining runs: %.2f',length(run_disp_filted)/length(run_disp)));
+
+                % Loop for plotting
+                for j = 1:4
+                    average_and_plot_auto_corr(acf_cell_regions{j}, max_lag, color_strings{j});
+                end
+
+                legend('region 1','region 2','region 3','region 4');
+                save_file_name = strcat(sprintf("max_frame_%d",max_frame),'_of_4_regions');
+                save_full_path = fullfile(save_folder_path, save_file_name);
+                saveas(gcf, save_full_path, 'png');
+
+                close all;
             end
-
-            save_all_figs(save_folder_path);
-
-            pause(1);
-
-            close all;
         end
     end
 end

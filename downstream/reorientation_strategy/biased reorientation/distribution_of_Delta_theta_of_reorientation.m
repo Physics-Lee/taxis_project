@@ -17,7 +17,7 @@ if path ~= 0
             run_disp = load_data_from_mat(full_path);
 
             % calculate
-            [theta_in_of_runs,theta_out_of_runs,Delta_theta] = calculate_Delta_theta(run_disp);
+            [theta_in_of_runs,theta_out_of_runs,Delta_theta] = calculate_Delta_theta_of_reorientation(run_disp);
 
             %% f(Delta theta)
 
