@@ -26,13 +26,13 @@ for i = 1:length(theta_cell_filted_unwrapped)
     plot(theta_t1,theta_t2,'k-o');
     xlabel('$\theta(t)$',Interpreter='latex');
     ylabel('$\theta(t+\tau)$',Interpreter='latex');
-    legend('data','y = x + 90','y = x - 90');
     title(sprintf("r = %.2f",r(1,2)));
-
     y1 = theta_t1 + 90; % Calculate y values for y = x + 90
     y2 = theta_t1 - 90; % Calculate y values for y = x - 90
     plot(theta_t1, y1, 'r--'); % Plotting y = x + 90 in red dashed line
     plot(theta_t1, y2, 'b--'); % Plotting y = x - 90 in blue dashed line
+    
+    legend('data','y = x + 90','y = x - 90');
 
     % save
     save_folder_path_now = fullfile(save_folder_path, strcat(sprintf("max_frame_%d",max_frame),'_for_each_run'));

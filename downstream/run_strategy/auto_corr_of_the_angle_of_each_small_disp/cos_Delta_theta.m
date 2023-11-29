@@ -10,7 +10,7 @@
 clc;clear;close all;
 
 %% option
-option_measure = "Pearson_Corr";
+option_measure = "visualize_X_Y_for_each_run";
 
 %% load
 
@@ -42,7 +42,7 @@ if path ~= 0
             create_folder(save_folder_path);
 
             % main
-            for max_frame = 30:20:110
+            for max_frame = 50
 
                 %% get theta
                 logical_index_run_disp = cellfun(@(x) size(x, 2) > max_frame, run_disp);
