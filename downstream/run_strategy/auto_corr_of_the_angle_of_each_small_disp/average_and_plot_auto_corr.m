@@ -1,3 +1,8 @@
+% average the auto-corr and plot it.
+%
+% Yixuan Li, 2023-11-29
+%
+
 function acf_averaged = average_and_plot_auto_corr(acf_cell,max_lag,color_str)
 
 % calculate

@@ -1,3 +1,8 @@
+% calculate Pearson-Corr of angle data
+%
+% Yixuan Li, 2023-11-29
+%
+
 function [r, r_mean, r_std] = calculate_Pearson_corr(theta_cell, max_frame)
 n_runs = length(theta_cell);
 r = zeros(n_runs, max_frame);

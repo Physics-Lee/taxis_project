@@ -1,3 +1,8 @@
+% calculate cos(\Delta \theta)
+%
+% Yixuan Li, 2023-11-29
+%
+
 function [cos_mean, cos_std, cos_mean_mean, cos_mean_std, cos_std_mean, cos_std_std]...
     = calculate_cos_Delta_theta(theta_cell, max_frame)
 n_runs = length(theta_cell);

@@ -1,3 +1,8 @@
+% calculate auto-corr of angle data using unit_vector
+%
+% Yixuan Li, 2023-11-29
+%
+
 function acf = dot_product_autocorr(unit_vectors, max_lag)
 acf = zeros(1, max_lag + 1);
 n = size(unit_vectors, 2);

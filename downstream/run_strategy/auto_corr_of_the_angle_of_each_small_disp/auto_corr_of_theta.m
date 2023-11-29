@@ -1,3 +1,11 @@
+% function: calculate auto-corr of \theta
+%
+% method 1: use unwrap.
+% method 2: use unit vector.
+%
+% Yixuan Li, 2023-11-29
+%
+
 clc;clear;close all;
 
 %% load
@@ -44,11 +52,11 @@ if path ~= 0
                 max_lag = max_frame - 1;
 
                 % method 1                
-                % acf_cell = cellfun(@(x) autocorr(x, max_lag), theta_cell_filted_unwrapped, 'UniformOutput', false);
+                acf_cell = cellfun(@(x) autocorr(x, max_lag), theta_cell_filted_unwrapped, 'UniformOutput', false);
 
                 % method 2
-                unit_vector_cell = cellfun(@(x) [cos(x); sin(x)], theta_cell_filted_unwrapped, 'UniformOutput', false);
-                acf_cell = cellfun(@(x) dot_product_autocorr(x, max_lag), unit_vector_cell, 'UniformOutput', false);
+                % unit_vector_cell = cellfun(@(x) [cos(x); sin(x)], theta_cell_filted_unwrapped, 'UniformOutput', false);
+                % acf_cell = cellfun(@(x) dot_product_autocorr(x, max_lag), unit_vector_cell, 'UniformOutput', false);
 
                 % plot
                 figure;
