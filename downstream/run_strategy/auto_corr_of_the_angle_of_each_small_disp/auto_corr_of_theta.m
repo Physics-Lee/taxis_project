@@ -43,19 +43,19 @@ if path ~= 0
                 max_lag = max_frame - 1; % frames
                 acf_cell = cellfun(@(x) autocorr(x, max_lag), theta_cell_filted, 'UniformOutput', false);
 
-                % % plot
-                % figure;
-                % hold on;
-                % xlabel('t (s)');
-                % ylabel('auto correlation');
-                % title('Error Bar for Runs');
-                % subtitle(sprintf('percentage of remaining runs: %.2f',length(run_disp_filted)/length(run_disp)));
-                % average_and_plot_auto_corr(acf_cell,max_lag,'blue');
-                % save_file_name = sprintf("max_frame_%d",max_frame);
-                % 
-                % % save
-                % save_full_path = fullfile(save_folder_path,save_file_name);
-                % saveas(gcf,save_full_path,'png');
+                % plot
+                figure;
+                hold on;
+                xlabel('t (s)');
+                ylabel('auto correlation');
+                title('Error Bar for Runs');
+                subtitle(sprintf('percentage of remaining runs: %.2f',length(run_disp_filted)/length(run_disp)));
+                average_and_plot_auto_corr(acf_cell,max_lag,'blue');
+                save_file_name = sprintf("max_frame_%d",max_frame);
+
+                % save
+                save_full_path = fullfile(save_folder_path,save_file_name);
+                saveas(gcf,save_full_path,'png');
 
                 %% auto-corr of 4 regions
 
