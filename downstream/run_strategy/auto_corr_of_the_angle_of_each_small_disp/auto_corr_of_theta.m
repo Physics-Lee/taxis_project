@@ -26,7 +26,7 @@ if path ~= 0
 
             % create save folder
             folder_path_to_eset = fileparts(fileparts(full_path));
-            save_folder_path = fullfile(folder_path_to_eset,'auto_corr_of_theta_of_each_small_disp_of_runs');
+            save_folder_path = fullfile(folder_path_to_eset,'auto_corr_of_theta_of_each_small_disp_of_runs_unit_vector_method');
             create_folder(save_folder_path);
 
             % main
@@ -38,10 +38,17 @@ if path ~= 0
                 theta_cell = cellfun(@from_points_to_theta, run_disp_filted, 'UniformOutput', false);
                 logical_index_theta = cellfun(@(x) size(x, 2) > max_frame, theta_cell);
                 theta_cell_filted = theta_cell(logical_index_theta);
+                theta_cell_filted_unwrapped = cellfun(@unwrap, theta_cell_filted, 'UniformOutput', false);
 
                 %% auto-corr
-                max_lag = max_frame - 1; % frames
-                acf_cell = cellfun(@(x) autocorr(x, max_lag), theta_cell_filted, 'UniformOutput', false);
+                max_lag = max_frame - 1;
+
+                % method 1                
+                % acf_cell = cellfun(@(x) autocorr(x, max_lag), theta_cell_filted_unwrapped, 'UniformOutput', false);
+
+                % method 2
+                unit_vector_cell = cellfun(@(x) [cos(x); sin(x)], theta_cell_filted_unwrapped, 'UniformOutput', false);
+                acf_cell = cellfun(@(x) dot_product_autocorr(x, max_lag), unit_vector_cell, 'UniformOutput', false);
 
                 % plot
                 figure;
@@ -51,6 +58,7 @@ if path ~= 0
                 title('Error Bar for Runs');
                 subtitle(sprintf('percentage of remaining runs: %.2f',length(run_disp_filted)/length(run_disp)));
                 average_and_plot_auto_corr(acf_cell,max_lag,'blue');
+                ylim([0,1]);
                 save_file_name = sprintf("max_frame_%d",max_frame);
 
                 % save
