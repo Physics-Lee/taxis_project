@@ -1,12 +1,14 @@
 % function: calculate auto-corr of \theta
 %
-% method 1: use unwrap.
-% method 2: use unit vector.
+% option_measure: "unwrapped", "unit_vector"
 %
 % Yixuan Li, 2023-11-29
 %
 
 clc;clear;close all;
+
+%% option
+option_measure = "unit_vector";
 
 %% load
 
@@ -34,7 +36,7 @@ if path ~= 0
 
             % create save folder
             folder_path_to_eset = fileparts(fileparts(full_path));
-            save_folder_path = fullfile(folder_path_to_eset,'auto_corr_of_theta_of_each_small_disp_of_runs_unit_vector_method');
+            save_folder_path = fullfile(folder_path_to_eset,strcat('auto_corr_',option_measure));
             create_folder(save_folder_path);
 
             % main
@@ -51,12 +53,13 @@ if path ~= 0
                 %% auto-corr
                 max_lag = max_frame - 1;
 
-                % method 1                
-                acf_cell = cellfun(@(x) autocorr(x, max_lag), theta_cell_filted_unwrapped, 'UniformOutput', false);
-
-                % method 2
-                % unit_vector_cell = cellfun(@(x) [cos(x); sin(x)], theta_cell_filted_unwrapped, 'UniformOutput', false);
-                % acf_cell = cellfun(@(x) dot_product_autocorr(x, max_lag), unit_vector_cell, 'UniformOutput', false);
+                switch option_measure
+                    case "unwrapped"
+                        acf_cell = cellfun(@(x) autocorr(x, max_lag), theta_cell_filted_unwrapped, 'UniformOutput', false);
+                    case "unit_vector"
+                        unit_vector_cell = cellfun(@(x) [cos(x); sin(x)], theta_cell_filted_unwrapped, 'UniformOutput', false);
+                        acf_cell = cellfun(@(x) dot_product_autocorr(x, max_lag), unit_vector_cell, 'UniformOutput', false);
+                end
 
                 % plot
                 figure;

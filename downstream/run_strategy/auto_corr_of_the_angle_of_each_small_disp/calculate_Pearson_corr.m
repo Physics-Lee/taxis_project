@@ -4,6 +4,9 @@
 %
 
 function [r, r_mean, r_std] = calculate_Pearson_corr(theta_cell, max_frame)
+
+max_frame = max_frame - 10; % make sure you at least have 10 points to calculate Pearson r
+
 n_runs = length(theta_cell);
 r = zeros(n_runs, max_frame);
 
