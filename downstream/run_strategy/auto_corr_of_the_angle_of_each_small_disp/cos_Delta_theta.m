@@ -1,8 +1,8 @@
 % function: calculate cos(\Delta \theta), Pearson Corr or visualize
 % \theta(t) and \theta(t+\tau) as X and Y
 %
-% option_measure: cos_Delta_theta, Pearson_Corr, Visualize_as_X_and_Y
-% visualize_X_Y_for_each_run.
+% option_measure: cos_Delta_theta, Pearson_Corr, Visualize_as_X_and_Y,
+% visualize_X_Y_for_each_run, Slope_of_Least_Squre
 %
 % Yixuan Li, 2023-11-29
 %
@@ -10,7 +10,7 @@
 clc;clear;close all;
 
 %% option
-option_measure = "visualize_X_Y_for_each_run";
+option_measure = "Visualize_as_X_and_Y";
 
 %% load
 
@@ -42,7 +42,7 @@ if path ~= 0
             create_folder(save_folder_path);
 
             % main
-            for max_frame = 50
+            for max_frame = 20:20:60
 
                 %% get theta
                 logical_index_run_disp = cellfun(@(x) size(x, 2) > max_frame, run_disp);
@@ -113,14 +113,32 @@ if path ~= 0
                         saveas(gcf,save_full_path,'png');
 
                     case "Pearson_Corr"
-                        %% Calculate Pearson Corr
+                        %% Calculate
                         [r, r_mean, r_std] = calculate_Pearson_corr(theta_cell_filted_unwrapped, max_frame);
 
-                        %% plot Pearson Corr
+                        %% plot
                         figure;
                         errorbar(0:max_frame-10, [1, r_mean], [0, r_std / sqrt(n_runs)]);
                         xlabel('Delta Frame');
                         ylabel('Pearson Corr');
+                        title('Error Bar for Runs');
+                        subtitle(sprintf('percentage of remaining runs: %.2f',length(run_disp_filted)/length(run_disp)));
+                        ylim([-0.2,1]);
+
+                        %% save
+                        save_file_name = sprintf("max_frame_%d_SEM",max_frame-10);
+                        save_full_path = fullfile(save_folder_path,save_file_name);
+                        saveas(gcf,save_full_path,'png');
+
+                    case "Slope_of_Least_Squre"
+                        %% Calculate
+                        [b, b_mean, b_std] = calculate_b(theta_cell_filted_unwrapped, max_frame);
+
+                        %% plot
+                        figure;
+                        errorbar(0:max_frame-10, [1, b_mean], [0, b_std / sqrt(n_runs)]);
+                        xlabel('Delta Frame');
+                        ylabel('Slope of Least Squre');
                         title('Error Bar for Runs');
                         subtitle(sprintf('percentage of remaining runs: %.2f',length(run_disp_filted)/length(run_disp)));
                         ylim([-0.2,1]);
@@ -141,6 +159,9 @@ if path ~= 0
                         % r
                         r = corrcoef(theta_t1,theta_t2);
 
+                        % b
+                        p = polyfit(theta_t1, theta_t2, 1);
+
                         % Lines y = x + 90 and y = x - 90
                         y1 = theta_t1 + 90; % Calculate y values for y = x + 90
                         y2 = theta_t1 - 90; % Calculate y values for y = x - 90
@@ -150,7 +171,7 @@ if path ~= 0
                         % label and title
                         xlabel('$\theta(t)$',Interpreter='latex');
                         ylabel('$\theta(t+\tau)$',Interpreter='latex');
-                        title(sprintf("r = %.2f",r(1,2)));
+                        title(sprintf("r = %.2f; b = %.2f",r(1,2),p(1)));
                         subtitle(sprintf('percentage of remaining runs: %.2f',length(run_disp_filted)/length(run_disp)));
                         legend('data','y = x + 90','y = x - 90');
 

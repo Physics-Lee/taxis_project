@@ -15,9 +15,12 @@ for i = 1:length(theta_cell_filted_unwrapped)
     n_theta = length(theta_now);
     theta_t1 = theta_now(1:n_theta-max_frame);
     theta_t2 = theta_now(1+max_frame:n_theta);
-    
+
     % r
     r = corrcoef(theta_t1,theta_t2);
+
+    % b
+    p = polyfit(theta_t1, theta_t2, 1);
 
     % plot
     figure;
@@ -26,12 +29,12 @@ for i = 1:length(theta_cell_filted_unwrapped)
     plot(theta_t1,theta_t2,'k-o');
     xlabel('$\theta(t)$',Interpreter='latex');
     ylabel('$\theta(t+\tau)$',Interpreter='latex');
-    title(sprintf("r = %.2f",r(1,2)));
+    title(sprintf("r = %.2f; b = %.2f",r(1,2),p(1)));
     y1 = theta_t1 + 90; % Calculate y values for y = x + 90
     y2 = theta_t1 - 90; % Calculate y values for y = x - 90
     plot(theta_t1, y1, 'r--'); % Plotting y = x + 90 in red dashed line
     plot(theta_t1, y2, 'b--'); % Plotting y = x - 90 in blue dashed line
-    
+
     legend('data','y = x + 90','y = x - 90');
 
     % save
