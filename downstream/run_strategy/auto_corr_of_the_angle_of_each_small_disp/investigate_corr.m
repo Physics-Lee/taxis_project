@@ -2,7 +2,7 @@
 % \theta(t) and \theta(t+\tau) as X and Y
 %
 % option_measure: cos_Delta_theta, Pearson_Corr, Visualize_as_X_and_Y,
-% visualize_X_Y_for_each_run, Slope_of_Least_Squre
+% visualize_X_Y_for_each_run, Slope_of_Least_Squre, I_mutual
 %
 % Yixuan Li, 2023-11-29
 %
@@ -10,7 +10,7 @@
 clc;clear;close all;
 
 %% option
-option_measure = "Visualize_as_X_and_Y";
+option_measure = "I_mutual";
 
 %% load
 
@@ -42,7 +42,7 @@ if path ~= 0
             create_folder(save_folder_path);
 
             % main
-            for max_frame = 20:20:60
+            for max_frame = 5:5:60
 
                 %% get theta
                 logical_index_run_disp = cellfun(@(x) size(x, 2) > max_frame, run_disp);
@@ -150,7 +150,7 @@ if path ~= 0
 
                     case "Visualize_as_X_and_Y"
                         %% Visualize as X and Y
-                        [theta_t1,theta_t2] = visualize_X_Y(theta_cell_filted_unwrapped,max_frame);
+                        [theta_t1,theta_t2] = get_all_theta_1_and_theta_2(theta_cell_filted_unwrapped,max_frame);
                         figure;
                         hold on;
                         axis equal;
@@ -181,6 +181,10 @@ if path ~= 0
                         saveas(gcf,save_full_path,'png');
                     case "visualize_X_Y_for_each_run"
                         visualize_X_Y_for_each_run(theta_cell_filted_unwrapped,max_frame,save_folder_path)
+                    case "I_mutual"
+                        [theta_t1,theta_t2] = get_all_theta_1_and_theta_2(theta_cell_filted_unwrapped,max_frame);
+                        I_mutual = calculate_mutual_information_given_angle_rv(theta_t1, theta_t2);
+                        fprintf("I_mutual: %.2f\n", I_mutual);
                 end
                 close all;
             end

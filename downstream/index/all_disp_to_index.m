@@ -11,7 +11,7 @@ clear;clc;close all;
 
 dbstop if error;
 
-option_measure = "chemo-index-left";
+option_measure = "chemo-index-down";
 
 % use GUI to choose .mat files
 path = uigetdir;

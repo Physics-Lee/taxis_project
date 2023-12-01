@@ -8,7 +8,7 @@
 clc;clear;close all;
 
 %% option
-option_measure = "unit_vector";
+option_measure = "unwrapped";
 
 %% load
 
@@ -55,7 +55,7 @@ if path ~= 0
 
                 switch option_measure
                     case "unwrapped"
-                        acf_cell = cellfun(@(x) autocorr(x, max_lag), theta_cell_filted_unwrapped, 'UniformOutput', false);
+                        acf_cell = cellfun(@(x) auto_corr_manual(x, max_lag), theta_cell_filted_unwrapped, 'UniformOutput', false);
                     case "unit_vector"
                         unit_vector_cell = cellfun(@(x) [cos(x); sin(x)], theta_cell_filted_unwrapped, 'UniformOutput', false);
                         acf_cell = cellfun(@(x) dot_product_autocorr(x, max_lag), unit_vector_cell, 'UniformOutput', false);

@@ -8,7 +8,7 @@
 clc;clear;close all;
 
 %% set bins and ticks
-n_frame = 20;
+n_frame = 40;
 switch n_frame
     case 1
         n_bins = 36 * 10;
@@ -78,12 +78,12 @@ if path ~= 0
             Delta_theta_vector = rad2deg(Delta_theta_vector);
 
             % plot f(delta theta)
-            save_file_name = sprintf("f(Delta theta)_%d frames.png",n_frame);
+            save_file_name = sprintf("f(Delta theta of %d frames).png",n_frame);
             save_full_path = fullfile(save_folder_path, save_file_name);
             create_histogram(Delta_theta_vector, n_edges, x_ticks, xlabel_str, title_str, save_full_path, y_lim);
 
             % plot f(delta theta) on semilogy
-            save_file_name = sprintf("f(Delta theta)_semilogy_%d frames.png",n_frame);
+            save_file_name = sprintf("f(Delta theta of %d frames)_semilogy.png",n_frame);
             save_full_path = fullfile(save_folder_path, save_file_name);
             create_histogram_semilogy(Delta_theta_vector, n_edges, x_ticks, xlabel_str, title_str, save_full_path, y_lim);
 
@@ -103,7 +103,7 @@ if path ~= 0
                 delta_theta_region = Delta_theta_regions{region};
                 delta_theta_region = delta_theta_region / pi * 180;
                 region_title = ['$f(\Delta \theta \ between \ ' num2str(n_frame) ' \ frame|\theta_{in} \ belongs \ to \ region \ ' num2str(region) ')$'];
-                save_full_path = fullfile(save_folder_path, ['f(Delta theta;theta_in belongs to region ' num2str(region) ')','.png']);
+                save_full_path = fullfile(save_folder_path, sprintf('f(Delta theta of %d frames;theta_in belongs to region %d).png',n_frame,region));
                 create_histogram(delta_theta_region, n_edges, x_ticks, xlabel_str, region_title, save_full_path, y_lim);
             end
 

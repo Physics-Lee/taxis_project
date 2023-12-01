@@ -3,7 +3,7 @@
 % Yixuan Li, 2023-11-29
 %
 
-function [theta_t1,theta_t2] = visualize_X_Y(theta_cell_filted_unwrapped,max_frame)
+function [theta_t1,theta_t2] = get_all_theta_1_and_theta_2(theta_cell_filted_unwrapped,max_frame)
 
 theta_t1 = [];
 theta_t2 = [];
