@@ -8,16 +8,16 @@
 clc;clear;close all;
 
 %% set bins and ticks
-n_frame = 40;
+n_frame = 20;
 switch n_frame
     case 1
         n_bins = 36 * 10;
         x_limit = 20;
         y_lim = [0 0.10];
-    case {10,20}
+    case 20
         n_bins = 36;
         x_limit = 180;
-        y_lim = [0 0.04];
+        y_lim = [0 0.02];
     case 40
         n_bins = 36;
         x_limit = 180;
@@ -43,7 +43,7 @@ path = uigetdir;
 if path ~= 0
 
     % get full paths of files
-    list = get_all_files_of_a_certain_name_pattern_in_a_rootpath(path,'run_disp_of_all_tracks.mat');
+    list = get_all_files_of_a_certain_name_pattern_in_a_rootpath(path,'run_disp_of_all_*.mat');
 
     % choose files
     [indx,tf] = listdlg('ListString',list,'ListSize',[800,600],'Name','Chose files');
