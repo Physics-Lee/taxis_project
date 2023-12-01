@@ -7,11 +7,11 @@
 % 2023-11-08, Yixuan Li
 %
 
-clear;clc;close all;
+clear;close all;
 
 dbstop if error;
 
-option_measure = "chemo-index-down";
+option_measure = "thermo-index";
 
 % use GUI to choose .mat files
 path = uigetdir;
