@@ -19,7 +19,7 @@ path = uigetdir;
 if path ~= 0
 
     % get full paths of files
-    list = get_all_files_of_a_certain_name_pattern_in_a_rootpath(path,'run_disp_of_all_worms.mat');
+    list = get_all_files_of_a_certain_name_pattern_in_a_rootpath(path,'run_disp_of_all_*.mat');
 
     % choose files
     [indx,tf] = listdlg('ListString',list,'ListSize',[800,600],'Name','Chose files');

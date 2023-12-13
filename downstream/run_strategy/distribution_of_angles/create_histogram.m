@@ -10,6 +10,7 @@
 function create_histogram(data, n_edges, x_ticks, xlabel_str, title_str, full_path, y_lim, scale_of_axis)
 
 figure;
+% data = mod(data + 90,360);
 histogram(data, n_edges, 'Normalization', 'pdf');
 xticks(x_ticks);
 xlabel(xlabel_str,'Interpreter','latex');
