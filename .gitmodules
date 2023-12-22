@@ -1,6 +1,3 @@
-[submodule "code/utils"]
-	path = code/utils
-	url = https://github.com/Physics-Lee/utils
 [submodule "code/Fun"]
 	path = code/Fun
 	url = https://github.com/Physics-Lee/Fun
