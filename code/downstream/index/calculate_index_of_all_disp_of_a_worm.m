@@ -4,7 +4,7 @@
 % 2023-12-02, Yixuan Li
 %
 
-function index = calculate_index_of_all_disp_of_a_worm(all_disp,ideal_unit_vector)
+function [index,path_length_sum] = calculate_index_of_all_disp_of_a_worm(all_disp,ideal_unit_vector)
 
 % calculate path length
 points = all_disp{1};

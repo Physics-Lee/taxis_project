@@ -26,7 +26,7 @@ if path ~= 0
 
         % init
         n_worm = length(indx);
-        index = zeros(n_worm,1);
+        index_weight = zeros(n_worm,2);
         count = 0;
 
         % loop to calculate the index for each track or worm
@@ -60,9 +60,12 @@ if path ~= 0
             end
 
             % calculate and save
-            index(count) = calculate_index_of_all_disp_of_a_worm(all_disp,ideal_unit_vector);
+            [index_weight(count,1),index_weight(count,2)] = calculate_index_of_all_disp_of_a_worm(all_disp,ideal_unit_vector);
 
         end
+
+        % array 2 table
+        index_weight_table = array2table(index_weight, 'VariableNames', {'index', 'path_length_mm'});
 
         % save
         save_folder_name = "index";
@@ -71,9 +74,10 @@ if path ~= 0
         save_file_name = option_measure;
         save_full_path = fullfile(save_folder_path,save_file_name);
         save_full_path_csv = strcat(save_full_path,'.csv');
-        writematrix(index, save_full_path_csv);
+        writetable(index_weight_table, save_full_path_csv);
 
         % index
+        index = index_weight(:,1);
         Mean_of_worms = mean(index);
         SEM_of_worms = std(index)/sqrt(length(index));
         fprintf('mean of worms: %.4f\n',Mean_of_worms);
