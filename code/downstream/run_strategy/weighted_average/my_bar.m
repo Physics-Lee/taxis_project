@@ -20,7 +20,7 @@ e = weighted_SEM;
 errorbar(x, y, e, 'k', 'linestyle', 'none');
 
 % label
-xlabel('track or worm');
+xlabel('worm');
 ylabel(y_label_str);
 
 % tick
@@ -29,11 +29,9 @@ ylabel(y_label_str);
 
 % title
 title('error bar for SEM');
+subtitle('error bar capturing the deviance of runs');
 
 % lim
 ylim(y_lim_range);
-
-% full screen
-set_full_screen;
 
 end

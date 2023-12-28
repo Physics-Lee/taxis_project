@@ -14,7 +14,8 @@ for i = 1:n_sample
     weighted_average = calculate_the_weighted_average_of_a_random_variable(x, weight);
     weighted_var = calculate_the_weighted_average_of_a_random_variable((x - weighted_average).^2, weight);
     weighted_std = sqrt(weighted_var);
-    weighted_SEM(i) = weighted_std / n_sample;
+    n_runs = length(x);
+    weighted_SEM(i) = weighted_std / sqrt(n_runs);
 end
 
 end

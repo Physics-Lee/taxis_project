@@ -7,17 +7,15 @@
 % 2023-10-25, Yixuan Li
 %
 
+dbstop if error;
 clear;clc;close all;
 
-dbstop if error;
-
+%% option
 option_measure = "chemo-index-left";
 type_of_run_disp = "each_track";
 
-% use GUI to choose .mat files
+%%
 path = uigetdir;
-
-% if choose a folder
 if path ~= 0
 
     switch type_of_run_disp
@@ -32,25 +30,33 @@ if path ~= 0
     if tf == 1
 
         % init
-        measure_cell = {};
+        measure_cell = cell(length(indx),2);
 
-        % calculate through loop
+        % loop to process all run disps of each worm.
         for i = indx
 
-            % load
+            %% load
             full_path = list{i};
             run_disp = load_data_from_mat(full_path);
+
+            %% file name
 
             % for save
             [folder_path,file_name,~] = fileparts(full_path);
             folder_path_to_eset = fileparts(folder_path);
+
+            % info is the serial number of the track
+            info_str = strrep(file_name,'_',' ');
+            info_str = strrep(info_str,'run disp of worm ','');
+            info_str = strrep(info_str,'run disp of track ','');
+            info_str = strrep(info_str,' corrected','');
 
             % for Colbert data which are not done within 1 day
             if contains(folder_path_to_eset,'run_disp_of')
                 folder_path_to_eset = fileparts(folder_path_to_eset);
             end
 
-            % core
+            %% calculate
             switch option_measure
                 case "velocity"
                     measure = calculate_v(run_disp);
@@ -64,25 +70,15 @@ if path ~= 0
                     measure = calculate_ortho_index(run_disp);
             end
 
-            % generate info for save
-            info_str = strrep(file_name,'_',' ');
-            info_str = strrep(info_str,'run disp of worm ','');
-            info_str = strrep(info_str,'run disp of track ','');
-            info_str = strrep(info_str,' corrected','');
-
-            % save
-            measure_cell = [measure_cell; {measure, info_str}];
-
-            % plot the histogram of a single point capturing deviation for runs
-            %             histogram_of_a_single_point_capturing_deviation_of_runs(measure,...
-            %                 option_measure,folder_path_to_eset,i);
+            %% add info
+            measure_cell(i,:) = {measure, info_str};
 
         end
 
-        % calculate weighted mean and std
+        % cell to table, also add weighted mean and SEM
         measure_table = my_cell2table(measure_cell);
 
-        %% bar plot with the error-bar
+        %% bar plot with the error-bar capturing the deviance of runs
 
         % plot
         switch option_measure
@@ -108,43 +104,18 @@ if path ~= 0
         save_folder_name = "weighted_average";
         save_folder_path = fullfile(folder_path_to_eset,save_folder_name);
         create_folder(save_folder_path);
+
         save_file_name = strcat(option_measure,"_each-worm");
         save_full_path = fullfile(save_folder_path,save_file_name);
         saveas(gcf,save_full_path,'png');
+
         close;
 
-        %% save the mean for the next step
-
-        % save_full_path_mat = strcat(save_full_path,'.mat');
-        % weighted_average = measure_table.weighted_average;
-        % save(save_full_path_mat,'weighted_average');
+        %% save the weighted mean for the next step
 
         save_full_path_csv = strcat(save_full_path,'.csv');
         weighted_average = measure_table.weighted_average;
         writematrix(weighted_average, save_full_path_csv);
-
-        %% bar plot with the error-bar
-
-        % plot
-        figure;
-        Mean_of_worms = mean(weighted_average);
-        SEM_of_worms = std(weighted_average)/sqrt(length(weighted_average));
-        errorbar(Mean_of_worms,SEM_of_worms);
-
-        xlabel("no meaning");
-        ylabel(option_measure);
-        title('error bar for SEM');
-        ylim(y_lim_range);
-
-        % disp
-        fprintf('mean of worms: %.4f\n',Mean_of_worms);
-        fprintf('SEM of worms: %.4f\n',SEM_of_worms);
-
-        % save
-        save_file_name = strcat(option_measure,"_all-worms_mean-and-deviation");
-        save_full_path = fullfile(save_folder_path,save_file_name);
-        saveas(gcf,save_full_path,'png');
-        close;
 
         %% distribution of worms or tracks
 
