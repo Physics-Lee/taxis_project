@@ -1,3 +1,9 @@
+% use bootstrap and permutation test to replace t-test when processing
+% index
+%
+% 2023-12-28, Yixuan Li
+%
+
 function boot_strap_for_hypothesis_test(control_group, test_group, n_bootstrap_samples)
 
 % Combine the data

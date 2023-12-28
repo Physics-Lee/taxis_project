@@ -1,22 +1,34 @@
 clc;clear;close all;
 
-% load data
-option_measure = "chemo-index-down";
+%% load data
+option_measure = "thermo-index";
 file_name = strcat(option_measure,".csv");
 
-save_full_path_csv = fullfile("F:\1_learning\research\taxis of C.elegans\high throughout system\data\smd-rmd-coablation\mockkill\Or\index",file_name);
-loaded_table = readtable(save_full_path_csv);
+root_folder_path = uigetdir;
+list = get_all_files_of_a_certain_name_pattern_in_a_rootpath(root_folder_path, file_name);
+
+if size(list,1) ~= 2
+    error("The number of .csv files is not 2!");
+end
+
+loaded_table = readtable(list{1});
 control_group = table2array(loaded_table);
 
-save_full_path_csv = fullfile("F:\1_learning\research\taxis of C.elegans\high throughout system\data\smd-rmd-coablation\ablation\Or\index",file_name);
-loaded_table = readtable(save_full_path_csv);
+loaded_table = readtable(list{2});
 test_group = table2array(loaded_table);
 
-% boot-strap
+%% for save
+save_folder_path = fileparts(list{1});
+
+%% boot-strap
 n_bootstrap_samples = 100000;
 boot_strap_for_hypothesis_test(control_group, test_group, n_bootstrap_samples);
 
-% histogram
+% save
+save_full_path = fullfile(save_folder_path,strcat(option_measure,'_hypothesis-test'));
+saveas(gcf,save_full_path,"png");
+
+%% histogram
 figure;
 n_bins = 10;
 y_up_limit = 0.3;
@@ -37,3 +49,7 @@ ylim([0 y_up_limit]);
 xlabel("index");
 ylabel(normalization_method);
 title("test");
+
+% save
+save_full_path = fullfile(save_folder_path,strcat(option_measure,'_histogram'));
+saveas(gcf,save_full_path,"png");

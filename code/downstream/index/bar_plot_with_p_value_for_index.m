@@ -30,5 +30,6 @@ set(gca, 'XTickLabel', {'control', 'test'}, 'fontsize', 12);
 
 %
 ylabel('Index');
+ylim([0, 0.35]);
 
 end
