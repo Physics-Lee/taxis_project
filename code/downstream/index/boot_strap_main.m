@@ -1,7 +1,7 @@
 clc;clear;close all;
 
 %% load data
-option_measure = "thermo-index";
+option_measure = "thermo-index_each-worm";
 file_name = strcat(option_measure,".csv");
 
 root_folder_path = uigetdir;
