@@ -68,20 +68,23 @@ if path ~= 0
         index_weight_table = array2table(index_weight, 'VariableNames', {'index', 'path_length_mm'});
 
         % save
+        
         save_folder_name = "index";
         save_folder_path = fullfile(folder_path_to_eset,save_folder_name);
         create_folder(save_folder_path);
+
         save_file_name = option_measure;
         save_full_path = fullfile(save_folder_path,save_file_name);
         save_full_path_csv = strcat(save_full_path,'.csv');
+
         writetable(index_weight_table, save_full_path_csv);
 
         % index
         index = index_weight(:,1);
         Mean_of_worms = mean(index);
         SEM_of_worms = std(index)/sqrt(length(index));
-        fprintf('mean of worms: %.4f\n',Mean_of_worms);
-        fprintf('SEM of worms: %.4f\n',SEM_of_worms);
+        fprintf('Un-weighted mean of worms: %.4f\n',Mean_of_worms);
+        fprintf('Un-weighted SEM of worms: %.4f\n',SEM_of_worms);
 
     end
 end
