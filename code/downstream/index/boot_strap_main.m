@@ -1,7 +1,9 @@
 clc;clear;close all;
 
 %% load data
-option_measure = "thermo-index_each-worm";
+% option_measure = "chemo-index-down_each-worm";
+option_measure = "chemo-index-left_each-worm";
+% option_measure = "thermo-index_each-worm";
 file_name = strcat(option_measure,".csv");
 
 root_folder_path = uigetdir;
@@ -53,3 +55,5 @@ title("test");
 % save
 save_full_path = fullfile(save_folder_path,strcat(option_measure,'_histogram'));
 saveas(gcf,save_full_path,"png");
+
+close all;
