@@ -29,28 +29,19 @@ if path ~= 0
             full_path_to_mcd = list_mcd{1};
             mcd = load_mcd(full_path_to_mcd);
 
-            % get run disp and reorientation disp
-            run_disp = process_labels(label_rearranged, mcd, "forward");
-            reorientation_disp = process_labels(label_rearranged, mcd, "reorientation");
-
-            % plot
-            plot_run_reorientation_and_save(run_disp,reorientation_disp,f_sample,full_path_to_mcd);
+            % get all disp
+            all_disp = process_labels(label_rearranged, mcd);
+            all_disp_vector = cell_array_to_numerical_array(all_disp);
+            all_disp = {all_disp_vector};
 
             % smooth
-            run_disp = my_smooth(run_disp);
-            reorientation_disp = my_smooth(reorientation_disp);
-
-            % plot
-            f_sample = 2; % Hz
-            plot_run_and_save(run_disp,f_sample,full_path_to_mcd);
+            all_disp = my_smooth(all_disp);
 
             % save
             [~,worm_str,~] = fileparts(folder_path_of_mcd);
             worm_str = strrep(worm_str,'w','worm_');
-            save_file_name_1 = strcat('run_disp_of_',worm_str,'.mat');
-            save_file_name_2 = strcat('reorientation_disp_of_',worm_str,'.mat');
-            my_save(folder_path_of_mcd, 'run_disp', save_file_name_1, 'run_disp', run_disp);
-            my_save(folder_path_of_mcd, 'reorientation_disp', save_file_name_2, 'reorientation_disp', reorientation_disp);
+            save_file_name_3 = strcat('all_disp_of_',worm_str,'.mat');
+            my_save(folder_path_of_mcd, 'all_disp', save_file_name_3, 'all_disp', all_disp);
 
         end
     end

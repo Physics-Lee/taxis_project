@@ -1,6 +1,10 @@
+% the input should be 2*n numerical array, 1st row for x and 2nd for y
+% the output is also 2*n numerical array, 1st row for x and 2nd for y
+%
+% Yixuan Li, 2023-12-29
+%
+
 function smoothed_trajectory = my_smooth(trajectory)
-% the input should be 2*n
-% the output is also 2*n
 trajectory = trajectory';
 window_size = 5;
 smoothed_trajectory = smoothdata(trajectory, 'movmean', window_size);

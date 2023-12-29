@@ -33,14 +33,15 @@ if path ~= 0
             run_disp = process_labels(label_rearranged, mcd, "forward");
             reorientation_disp = process_labels(label_rearranged, mcd, "reorientation");
 
-            % plot
+            % plot for 66 Hz
+            f_sample = 66; % Hz
             plot_run_reorientation_and_save(run_disp,reorientation_disp,f_sample,full_path_to_mcd);
 
             % smooth
             run_disp = my_smooth(run_disp);
             reorientation_disp = my_smooth(reorientation_disp);
 
-            % plot
+            % plot for 2 Hz
             f_sample = 2; % Hz
             plot_run_and_save(run_disp,f_sample,full_path_to_mcd);
 
