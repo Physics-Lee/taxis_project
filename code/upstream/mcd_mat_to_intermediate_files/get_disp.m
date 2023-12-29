@@ -5,7 +5,7 @@
 % 2023-11-05, Yixuan Li
 %
 
-function run_disp = get_disp(mcd,start_frame,end_frame,~)
+function run_disp = get_disp(mcd,start_frame,end_frame)
 
 global pixel2um unit2um
 pixel2um = 1.6835;

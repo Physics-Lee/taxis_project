@@ -38,7 +38,7 @@ for i = 1:n_bootstrap_samples
     mean_differences(i) = mean_control - mean_test;
 end
 
-% Calculate p-value
+% Calculate p-value (two-side)
 p_value = sum(abs(mean_differences) >= abs(actual_diff)) / n_bootstrap_samples;
 
 % plot

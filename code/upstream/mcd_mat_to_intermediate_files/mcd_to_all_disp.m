@@ -1,6 +1,6 @@
-% from mcd to run disp.
+% from mcd to all disp (contains both runs and reorientations).
 %
-% 2023-10-30, Yixuan Li
+% 2023-12-29, Yixuan Li
 %
 
 clear;clc;close all;
