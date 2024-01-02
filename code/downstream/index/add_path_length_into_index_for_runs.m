@@ -1,3 +1,8 @@
+% add the path length to index-for-runs
+%
+% 2024-01-02, Yixuan Li
+%
+
 clc;clear;close all;
 
 %% load data

@@ -11,8 +11,8 @@ dbstop if error;
 clear;clc;close all;
 
 %% option
-option_measure = "chemo-index-left";
-type_of_run_disp = "each_track";
+option_measure = "thermo-index";
+type_of_run_disp = "each_worm";
 
 %%
 path = uigetdir;
@@ -33,6 +33,7 @@ if path ~= 0
         measure_cell = cell(length(indx),2);
 
         % loop to process all run disps of each worm.
+        count = 0;
         for i = indx
 
             %% load
@@ -71,7 +72,8 @@ if path ~= 0
             end
 
             %% add info
-            measure_cell(i,:) = {measure, info_str};
+            count = count + 1;
+            measure_cell(count,:) = {measure, info_str};
 
         end
 

@@ -1,3 +1,8 @@
+% save the path length of each worm or each track
+%
+% 2024-01-02, Yixuan Li
+%
+
 clc;clear;close all;
 
 %% load data
@@ -6,8 +11,8 @@ list_eset = get_all_files_of_a_certain_name_pattern_in_a_rootpath(root_folder_pa
 [indx,tf] = listdlg('ListString',list_eset,'ListSize',[800,600],'Name','Choose files');
 for i = indx
     full_path_to_eset = list_eset{i};
-    folder_path_to_all_disp = fullfile(fileparts(full_path_to_eset),'all_disp_of_each_track');
-    list_all_disp = get_all_files_of_a_certain_name_pattern_in_a_rootpath(folder_path_to_all_disp,'all_disp_of_track_*.mat');
+    folder_path_to_all_disp = fullfile(fileparts(full_path_to_eset),'all_disp_of_each_worm');
+    list_all_disp = get_all_files_of_a_certain_name_pattern_in_a_rootpath(folder_path_to_all_disp,'all_disp_of_worm_*.mat');
     
     % init
     n_worms = length(list_all_disp);
