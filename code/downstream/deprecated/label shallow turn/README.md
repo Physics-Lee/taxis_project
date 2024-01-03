@@ -1,1 +1,1 @@
-Not useful anymore, I will use $<\frac{|\Delta \theta|}{d}>$ instead.
+Not useful anymore, because it is really hard to distinguish forward and turn sometimes. I will use $<\frac{|\Delta \theta|}{d}>$ in persistent-length-method instead.
