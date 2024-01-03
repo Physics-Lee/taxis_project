@@ -37,12 +37,12 @@ if root_folder_path ~= 0
             ylabel("y (mm)");
 
             % high
-            % xlim([-100 +100]);
-            % ylim([-100 +100]);
+            xlim([-100 +100]); % mm
+            ylim([-100 +100]); % mm
 
             % Colbert
-            xlim([-30 +30]); % mm
-            ylim([-30 +30]); % mm
+            % xlim([-30 +30]); % mm
+            % ylim([-30 +30]); % mm
 
             title_str = get_title_str(folder_path_to_eset);
             title(title_str);
