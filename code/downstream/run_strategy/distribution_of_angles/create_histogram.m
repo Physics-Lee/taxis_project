@@ -10,7 +10,6 @@
 function create_histogram(data, n_edges, x_ticks, xlabel_str, title_str, full_path, y_lim, save_histcount)
 
 figure;
-% data = mod(data + 90,360);
 histogram(data, n_edges, 'Normalization', 'pdf');
 xticks(x_ticks);
 xlabel(xlabel_str,'Interpreter','latex');
@@ -21,6 +20,7 @@ saveas(gcf, full_path);
 
 if nargin == 8
     if save_histcount
+        % data = mod(data + 90,360); % for NC when drawing the fake NC + NT
         histcount = histcounts(data, n_edges, 'Normalization', 'pdf');
         folder_path = fileparts(full_path);
         full_path_new = fullfile(folder_path,"histcount_of_theta_pdf.mat");

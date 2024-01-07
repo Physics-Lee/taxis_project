@@ -22,7 +22,7 @@ if root_folder_path ~= 0
     list = get_all_files_of_a_certain_name_pattern_in_a_rootpath(root_folder_path,'run_disp_of_all_*.mat');
 
     % choose files
-    [indx,tf] = listdlg('ListString',list,'ListSize',[800,600],'Name','Chose files');
+    [indx,tf] = listdlg('ListString',list,'ListSize',[800,600],'Name','Choose files');
 
     % if at least 1 file is choosed
     if tf == 1
