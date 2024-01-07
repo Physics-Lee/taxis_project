@@ -20,7 +20,7 @@ saveas(gcf, full_path);
 
 if nargin == 8
     if save_histcount
-        % data = mod(data + 90,360); % for NC when drawing the fake NC + NT
+        data = mod(data + 90,360); % for NC when drawing the fake NC + NT
         histcount = histcounts(data, n_edges, 'Normalization', 'pdf');
         folder_path = fileparts(full_path);
         full_path_new = fullfile(folder_path,"histcount_of_theta_pdf.mat");

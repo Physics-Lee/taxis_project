@@ -4,11 +4,11 @@ clc;clear;close all;
 
 % option_measure = "chemo-index-down";
 % option_measure = "chemo-index-left";
-% option_measure = "thermo-index";
+option_measure = "thermo-index";
 
 % option_measure = "chemo-index-down_each-worm";
 % option_measure = "chemo-index-left_each-worm";
-option_measure = "thermo-index_each-worm";
+% option_measure = "thermo-index_each-worm";
 
 file_name = strcat(option_measure,".csv");
 
