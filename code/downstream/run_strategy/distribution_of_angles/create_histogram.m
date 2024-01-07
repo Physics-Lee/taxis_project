@@ -7,7 +7,7 @@
 % 2023-09-30, Yixuan Li
 %
 
-function create_histogram(data, n_edges, x_ticks, xlabel_str, title_str, full_path, y_lim, scale_of_axis)
+function create_histogram(data, n_edges, x_ticks, xlabel_str, title_str, full_path, y_lim, save_histcount)
 
 figure;
 % data = mod(data + 90,360);
@@ -20,8 +20,11 @@ ylim(y_lim);
 saveas(gcf, full_path);
 
 if nargin == 8
-    if scale_of_axis == "semilogy"
-    elseif scale_of_axis == "loglog"
+    if save_histcount
+        histcount = histcounts(data, n_edges, 'Normalization', 'pdf');
+        folder_path = fileparts(full_path);
+        full_path_new = fullfile(folder_path,"histcount_of_theta_pdf.mat");
+        save(full_path_new,"histcount");
     end
 end
 

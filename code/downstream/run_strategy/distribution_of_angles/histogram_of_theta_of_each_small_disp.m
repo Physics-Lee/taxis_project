@@ -13,13 +13,13 @@ x_ticks_180 = -180:20:180;
 %% main
 
 % chose the folder to analyze
-path = uigetdir;
+root_folder_path = uigetdir;
 
 % if the user choose a folder
-if path ~= 0
+if root_folder_path ~= 0
 
     % get full paths of files
-    list = get_all_files_of_a_certain_name_pattern_in_a_rootpath(path,'run_disp_of_all_*.mat');
+    list = get_all_files_of_a_certain_name_pattern_in_a_rootpath(root_folder_path,'run_disp_of_all_*.mat');
 
     % choose files
     [indx,tf] = listdlg('ListString',list,'ListSize',[800,600],'Name','Chose files');
@@ -60,73 +60,74 @@ if path ~= 0
             % plot f(theta)
             save_file_name = 'f(theta).png';
             save_full_path = fullfile(save_folder_path, save_file_name);
-            create_histogram(theta_vector, n_bins, x_ticks_360, xlabel_str, title_str, save_full_path, y_lim);
-
-            % plot f(theta) on semilogy
-            save_file_name = 'f(theta)_semilogy.png';
-            save_full_path = fullfile(save_folder_path, save_file_name);
-            create_histogram_semilogy(theta_vector, n_bins, x_ticks_360, xlabel_str, title_str, save_full_path, y_lim);
-
-            %% plot f(theta - theta_in)
-
-            % calculate (theta - theta_in)
-            [theta_minus_theta_in_vector,theta_minus_theta_in_cell] = minus_theta_in(theta_cell,theta_in);
-            theta_minus_theta_in_vector = rad2deg(theta_minus_theta_in_vector);
-
-            % set parameters
-            xlabel_str = '$\theta - \theta_{in}$';
-            title_str = '$f(\theta - \theta_{in})$';
-            y_lim = [0 0.012];
-
-            % plot f(theta - theta_in)
-            save_file_name = 'f(theta-theta_in).png';
-            save_full_path = fullfile(save_folder_path, save_file_name);
-            create_histogram(theta_minus_theta_in_vector, n_bins, x_ticks_180, xlabel_str, title_str, save_full_path, y_lim);
-
-            % plot f(theta - theta_in) on semilogy
-            save_file_name = 'f(theta-theta_in)_semilogy.png';
-            save_full_path = fullfile(save_folder_path, save_file_name);
-            create_histogram_semilogy(theta_minus_theta_in_vector, n_bins, x_ticks_180, xlabel_str, title_str, save_full_path, y_lim);
-
-            % close
-            close all;
-
-            %% plot f(theta|theta in)
-
-            % get taxis type
-            option_taxis = get_taxis_type_by_full_path(full_path);
-
-            % get data
-            [theta_vector_regions{1:4}] = allocate_angles_to_4_regions(option_taxis,theta_in,theta_cell);
-
-            % plot f(theta|theta in)
-            for region = 1:4
-                theta_region = theta_vector_regions{region};
-                theta_region = to_360(theta_region);
-                xlabel_str = '$\theta$';
-                title_str = ['$f(\theta|\theta_{in} \ belongs \ to \ region \ ' num2str(region) ')$'];
-                save_full_path = fullfile(save_folder_path, ['f(theta;theta_in belongs to region ' num2str(region) ')','.png']);
-                y_lim = [0 0.012];
-                create_histogram(theta_region, n_bins, x_ticks_360, xlabel_str, title_str, save_full_path, y_lim);
-            end
-
-            close all;
-
-            %% plot f(theta - theta_in|theta in)
-
-            % get data
-            [theta_vector_regions{1:4}] = allocate_angles_to_4_regions(option_taxis,theta_in,theta_minus_theta_in_cell);
-
-            % plot f(theta - theta_in|theta in)
-            for region = 1:4
-                theta_region = theta_vector_regions{region};
-                theta_region = rad2deg(theta_region);
-                xlabel_str = '$\theta - \theta_{in}$';
-                title_str = ['$f(\theta - \theta_{in}|\theta_{in} \ belongs \ to \ region \ ' num2str(region) ')$'];
-                save_full_path = fullfile(save_folder_path, ['f(theta-theta_in;theta_in belongs to region ' num2str(region) ')','.png']);
-                y_lim = [0 0.012];
-                create_histogram(theta_region, n_bins, x_ticks_180, xlabel_str, title_str, save_full_path, y_lim);
-            end
+            save_histcount = true;
+            create_histogram(theta_vector, n_bins, x_ticks_360, xlabel_str, title_str, save_full_path, y_lim, save_histcount);
+            % 
+            % % plot f(theta) on semilogy
+            % save_file_name = 'f(theta)_semilogy.png';
+            % save_full_path = fullfile(save_folder_path, save_file_name);
+            % create_histogram_semilogy(theta_vector, n_bins, x_ticks_360, xlabel_str, title_str, save_full_path, y_lim);
+            % 
+            % %% plot f(theta - theta_in)
+            % 
+            % % calculate (theta - theta_in)
+            % [theta_minus_theta_in_vector,theta_minus_theta_in_cell] = minus_theta_in(theta_cell,theta_in);
+            % theta_minus_theta_in_vector = rad2deg(theta_minus_theta_in_vector);
+            % 
+            % % set parameters
+            % xlabel_str = '$\theta - \theta_{in}$';
+            % title_str = '$f(\theta - \theta_{in})$';
+            % y_lim = [0 0.012];
+            % 
+            % % plot f(theta - theta_in)
+            % save_file_name = 'f(theta-theta_in).png';
+            % save_full_path = fullfile(save_folder_path, save_file_name);
+            % create_histogram(theta_minus_theta_in_vector, n_bins, x_ticks_180, xlabel_str, title_str, save_full_path, y_lim);
+            % 
+            % % plot f(theta - theta_in) on semilogy
+            % save_file_name = 'f(theta-theta_in)_semilogy.png';
+            % save_full_path = fullfile(save_folder_path, save_file_name);
+            % create_histogram_semilogy(theta_minus_theta_in_vector, n_bins, x_ticks_180, xlabel_str, title_str, save_full_path, y_lim);
+            % 
+            % % close
+            % close all;
+            % 
+            % %% plot f(theta|theta in)
+            % 
+            % % get taxis type
+            % option_taxis = get_taxis_type_by_full_path(full_path);
+            % 
+            % % get data
+            % [theta_vector_regions{1:4}] = allocate_angles_to_4_regions(option_taxis,theta_in,theta_cell);
+            % 
+            % % plot f(theta|theta in)
+            % for region = 1:4
+            %     theta_region = theta_vector_regions{region};
+            %     theta_region = to_360(theta_region);
+            %     xlabel_str = '$\theta$';
+            %     title_str = ['$f(\theta|\theta_{in} \ belongs \ to \ region \ ' num2str(region) ')$'];
+            %     save_full_path = fullfile(save_folder_path, ['f(theta;theta_in belongs to region ' num2str(region) ')','.png']);
+            %     y_lim = [0 0.012];
+            %     create_histogram(theta_region, n_bins, x_ticks_360, xlabel_str, title_str, save_full_path, y_lim);
+            % end
+            % 
+            % close all;
+            % 
+            % %% plot f(theta - theta_in|theta in)
+            % 
+            % % get data
+            % [theta_vector_regions{1:4}] = allocate_angles_to_4_regions(option_taxis,theta_in,theta_minus_theta_in_cell);
+            % 
+            % % plot f(theta - theta_in|theta in)
+            % for region = 1:4
+            %     theta_region = theta_vector_regions{region};
+            %     theta_region = rad2deg(theta_region);
+            %     xlabel_str = '$\theta - \theta_{in}$';
+            %     title_str = ['$f(\theta - \theta_{in}|\theta_{in} \ belongs \ to \ region \ ' num2str(region) ')$'];
+            %     save_full_path = fullfile(save_folder_path, ['f(theta-theta_in;theta_in belongs to region ' num2str(region) ')','.png']);
+            %     y_lim = [0 0.012];
+            %     create_histogram(theta_region, n_bins, x_ticks_180, xlabel_str, title_str, save_full_path, y_lim);
+            % end
 
             close all;
 
