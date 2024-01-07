@@ -60,8 +60,7 @@ if path ~= 0
     n_regions = 4;
     n_bins = size(data_cell_array{1, 1}{1, 1},2);
 
-    % Convert cell arrays to 3D matrix, the size of it is n_tracks * n_regions
-    % * n_bins
+    % Convert cell arrays to 3D matrix, the size of it is n_tracks * n_regions * n_bins
     data_3D_array = zeros(n_tracks, n_regions, n_bins);
     for i = 1:n_tracks
         for j = 1:n_regions
@@ -89,6 +88,26 @@ if path ~= 0
         end
     end
 
+    %% save folder path
+    save_folder_path = fileparts(full_path);
+    save_folder_path = fileparts(save_folder_path);
+    save_folder_path = fullfile(save_folder_path,'persistent_length_error_bar_for_tracks');
+
+    if contains(full_path,'first_half_of_a_run')
+        save_folder_path = fullfile(save_folder_path,'first_half_of_a_run');
+    elseif contains(full_path,'second_half_of_a_run')
+        save_folder_path = fullfile(save_folder_path,'second_half_of_a_run');
+    elseif contains(full_path,'first_half_of_an_exp')
+        save_folder_path = fullfile(save_folder_path,'first_half_of_an_exp');
+    elseif contains(full_path,'second_half_of_an_exp')
+        save_folder_path = fullfile(save_folder_path,'second_half_of_an_exp');
+    end
+    
+    create_folder(save_folder_path);
+
+    %% save file name
+    save_file_name = strcat('error_bar_for_different_tracks','_',option_measure);
+
     %% plot
     step_size = 30/n_bins;
     x = 0:step_size:30 - step_size;
@@ -105,9 +124,12 @@ if path ~= 0
     title_str = sprintf("n tracks = %d",n_tracks);
     title(title_str);
 
-    % add lim
-    xlim([0.2,2]);
+    % xlim
+    x_lim_down = 0.2; % mm
+    x_lim_up = 2; % mm
+    xlim([x_lim_down,x_lim_up]);
 
+    % ylim
     switch option_measure
         case "cos"
             ylim([0,1]);
@@ -117,7 +139,7 @@ if path ~= 0
             ylabel('$<\Delta cos (\Delta \theta)>$','Interpreter','latex');
     end
 
-    % add legend
+    % legend
     option_taxis = get_taxis_type_by_full_path(full_path);
     switch option_taxis
         case {"NC","NT","Pa"}
@@ -136,28 +158,42 @@ if path ~= 0
     add_legend(option_partition_region);
 
     % save
-    save_folder_path = fileparts(full_path);
-    save_folder_path = fileparts(save_folder_path);
-    save_folder_path = fullfile(save_folder_path,'persistent_length_error_bar_for_tracks');
-
-    if contains(full_path,'first_half_of_a_run')
-        save_folder_path = fullfile(save_folder_path,'first_half_of_a_run');
-    elseif contains(full_path,'second_half_of_a_run')
-        save_folder_path = fullfile(save_folder_path,'second_half_of_a_run');
-    elseif contains(full_path,'first_half_of_an_exp')
-        save_folder_path = fullfile(save_folder_path,'first_half_of_an_exp');
-    elseif contains(full_path,'second_half_of_an_exp')
-        save_folder_path = fullfile(save_folder_path,'second_half_of_an_exp');
-    end
-    
-    create_folder(save_folder_path);
-    save_file_name = strcat('error_bar_for_different_tracks','_',option_measure);
     save_full_path = fullfile(save_folder_path,save_file_name);
     saveas(gcf,save_full_path,'fig');
     saveas(gcf,save_full_path,'png');
 
     % close
     close;
+
+    %% save for next use
+    save_file_name = "x_y_e_Is_All_You_Need.mat";
+    save_full_path = fullfile(save_folder_path,save_file_name);
+    save(save_full_path,"x","mean_values","error_bar_values");
+
+    %% fit
+    interval_down = ceil(x_lim_down/step_size) + 1;
+    interval_up = floor(x_lim_up/step_size) + 1;
+    x_for_fit = x(interval_down:interval_up); 
+    slope_fit = nan(4,1); % blue-cyan-black-red
+    for j = 1:4
+        y_now = mean_values(j,:);
+        y_for_fit = y_now(interval_down:interval_up);
+        coefficients = polyfit(x_for_fit, y_for_fit, 1);
+        slope_fit(j,1) = coefficients(1);
+    end
+    var_name = 'slope';
+    [slope_fit_save_table, slope_fit_save_T] = add_quadrant_and_save(slope_fit,var_name,save_folder_path,save_file_name);
+
+    %% Area Under Curve
+    Area_Under_Curve = nan(4,1); % blue-cyan-black-red
+    for j = 1:4
+        y_now = mean_values(j,:);
+        y_for_fit = y_now(interval_down:interval_up);
+        Area_Under_Curve(j,1) = sum(y_for_fit) * step_size;     
+    end
+    var_name = 'Area_Under_Curve';
+    [Area_Under_Curve_save_table, Area_Under_Curve_save_T] = add_quadrant_and_save(Area_Under_Curve,var_name,save_folder_path,save_file_name);
+
 end
 
 % disp end
