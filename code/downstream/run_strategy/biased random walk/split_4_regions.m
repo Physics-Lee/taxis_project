@@ -15,6 +15,12 @@ elseif theta_ideal == -3/4*pi
     region_flags(theta_mean > -3/8*pi & theta_mean < -1/8*pi) = 4;
     region_flags(theta_mean > +1/8*pi & theta_mean < +3/8*pi) = 1;
     region_flags(theta_mean > +5/8*pi & theta_mean < +7/8*pi) = 2;
+elseif theta_ideal == -1/2*pi
+    region_flags(theta_mean < +pi & theta_mean > +7/8*pi) = 2;
+    region_flags(theta_mean > -pi & theta_mean < -7/8*pi) = 2;
+    region_flags(theta_mean > -5/8*pi & theta_mean < -3/8*pi) = 3;
+    region_flags(theta_mean > -1/8*pi & theta_mean < +1/8*pi) = 4;
+    region_flags(theta_mean > +3/8*pi & theta_mean < +5/8*pi) = 1;
 else
     error("theta_ideal is not right!");
 end
