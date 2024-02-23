@@ -52,12 +52,7 @@ if root_folder_path ~= 0
             % split 4 regions
             region_flags = split_4_regions(theta_mean, theta_ideal);
 
-            % add std2mean
-            % std2mean = 0.6;
-            % region_flags = screened_by_std_to_mean(region_flags,theta_cell,std2mean);
-
             % allocate to 4 regions
-            % theta_cell_4_region = allocate_theta_cell(theta_cell, region_flags);
             run_length_cell_4_region = allocate_theta_cell(run_length_cell, region_flags);
 
             % get run time
