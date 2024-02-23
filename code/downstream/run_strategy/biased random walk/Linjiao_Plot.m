@@ -23,7 +23,7 @@ end
 
 % Customize the plot
 xlabel('Region'); % or specific group names if applicable
-ylabel('Run Time (s)');
+ylabel('Run Length (mm)');
 title('Mean and SEM for 4 Groups');
 set(gca, 'XTick', 1:4); % Assuming 4 groups
 % Optional: set custom group names

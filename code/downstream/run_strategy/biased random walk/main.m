@@ -56,17 +56,20 @@ if root_folder_path ~= 0
             % std2mean = 0.6;
             % region_flags = screened_by_std_to_mean(region_flags,theta_cell,std2mean);
 
-            % allocate theta cell
-            theta_cell_4_region = allocate_theta_cell(theta_cell, region_flags);
+            % allocate to 4 regions
+            % theta_cell_4_region = allocate_theta_cell(theta_cell, region_flags);
+            run_length_cell_4_region = allocate_theta_cell(run_length_cell, region_flags);
 
             % get run time
-            mean_SEM_of_run_time_4_regions = calculate_mean_std_of_run_time(theta_cell_4_region);
+            mean_SEM_of_run_length_4_regions = calculate_mean_std_of_run_length(run_length_cell_4_region);
 
             % plot
-            Linjiao_Plot(mean_SEM_of_run_time_4_regions);
+            Linjiao_Plot(mean_SEM_of_run_length_4_regions);
 
             % save
             saveas(gcf,fullfile(save_folder_path,"Linjiao_Plot"),"png");
         end
     end
 end
+
+close all;
