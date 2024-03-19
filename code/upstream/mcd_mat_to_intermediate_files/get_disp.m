@@ -15,6 +15,9 @@ unit2um = 0.05;
 start_segment = 40;
 end_segment = 60;
 
+% start_segment = 1;
+% end_segment = 15;
+
 n = length(start_frame);
 run_disp = cell(n,1);
 

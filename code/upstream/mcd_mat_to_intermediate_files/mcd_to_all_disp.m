@@ -35,7 +35,7 @@ if path ~= 0
             all_disp = {all_disp_vector};
 
             % smooth
-            all_disp = my_smooth(all_disp);
+            % all_disp = smooth_remain_original_f(all_disp);
 
             % save
             [~,worm_str,~] = fileparts(folder_path_of_mcd);
@@ -43,6 +43,8 @@ if path ~= 0
             save_file_name_3 = strcat('all_disp_of_',worm_str,'.mat');
             my_save(folder_path_of_mcd, 'all_disp', save_file_name_3, 'all_disp', all_disp);
 
+            % test
+            plot_Delta_C(all_disp_vector,label_rearranged);
         end
     end
 end

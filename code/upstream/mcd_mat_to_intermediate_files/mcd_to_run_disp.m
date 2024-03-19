@@ -33,17 +33,18 @@ if path ~= 0
             run_disp = process_labels(label_rearranged, mcd, "forward");
             reorientation_disp = process_labels(label_rearranged, mcd, "reorientation");
 
-            % plot for 66 Hz
-            f_sample = 66; % Hz
-            plot_run_reorientation_and_save(run_disp,reorientation_disp,f_sample,full_path_to_mcd);
+            % plot for orignal f
+            plot_run_reorientation_and_save(run_disp,reorientation_disp,full_path_to_mcd);
 
-            % smooth
-            run_disp = my_smooth(run_disp);
-            reorientation_disp = my_smooth(reorientation_disp);
+            % smooth to the desired frequency
+            f_sample_old = 66;
+            f_sample_new = 2;
+            run_disp = smooth_to_desire_f(run_disp,f_sample_old,f_sample_new);
+            reorientation_disp = smooth_to_desire_f(reorientation_disp,f_sample_old,f_sample_new);
 
-            % plot for 2 Hz
-            f_sample = 2; % Hz
-            plot_run_and_save(run_disp,f_sample,full_path_to_mcd);
+            % % plot for 2 Hz
+            % f_sample = 2; % Hz
+            % plot_run_and_save(run_disp,f_sample,full_path_to_mcd);
 
             % save
             [~,worm_str,~] = fileparts(folder_path_of_mcd);

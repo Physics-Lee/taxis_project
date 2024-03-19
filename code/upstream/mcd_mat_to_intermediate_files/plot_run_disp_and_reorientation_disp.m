@@ -3,7 +3,7 @@
 % 2023-11-05, Yixuan Li
 %
 
-function plot_run_disp_and_reorientation_disp(run_disp_merged,reorientation_disp_merged,f_sample)
+function plot_run_disp_and_reorientation_disp(run_disp_merged,reorientation_disp_merged)
 
 figure;
 hold on;
@@ -22,6 +22,8 @@ scatter(x_run(end),y_run(end),'magenta','filled');
 
 xlabel('x(mm)');
 ylabel('y(mm)');
+
+f_sample = 66;
 title(['f sample = ' num2str(f_sample) 'Hz']);
 
 legend('run','reorientation','start','end');

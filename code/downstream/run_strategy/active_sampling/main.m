@@ -35,7 +35,7 @@ if root_folder_path ~= 0
             % get theta from run disp
             theta_cell = cellfun(@from_points_to_theta, run_disp, 'UniformOutput', false);
             n_frame = 1;
-            Delta_theta_cell = calculate_Delta_theta_between_n_frames(theta_cell, n_frame);
+            Delta_theta_cell = calculate_delta_theta_between_n_frames(theta_cell, n_frame);
             theta_vector = cell_array_to_numerical_array_after_drop_n_frames(theta_cell, n_frame);
             Delta_theta_vector = cell_array_to_numerical_array(Delta_theta_cell);
             theta_vector = rad_to_360(theta_vector);
