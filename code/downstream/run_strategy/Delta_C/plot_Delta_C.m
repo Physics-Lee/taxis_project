@@ -1,5 +1,10 @@
 function plot_Delta_C(all_disp_vector,label_rearranged)
 
+% Plot Delta C
+%
+% 2024-03-25, Yixuan Li
+%
+
 % Assume 'theta' is defined somewhere in your workspace
 ideal_theta = -1/2*pi;
 
