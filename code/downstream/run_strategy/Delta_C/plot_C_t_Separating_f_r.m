@@ -28,5 +28,6 @@ end
 % Customize the plot
 xlabel("t (s)");
 ylabel("C (mM)");
+legend("forward","reorientation");
 
 end
