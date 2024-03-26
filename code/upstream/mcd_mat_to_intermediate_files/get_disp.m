@@ -14,10 +14,10 @@ unit2um = 0.05;
 % calculate the mean of start_segment to end_segment as the center of mass
 part_extracted = "head";
 switch part_extracted
-    case "head"
+    case "body"
         start_segment = 40;
         end_segment = 60;
-    case "body"
+    case "head"
         start_segment = 1;
         end_segment = 15;
 end
@@ -38,13 +38,18 @@ for i = 1:n
     for j = 1:length(frames)
 
         centerline = convert_coordinates_and_add_stage_position(mcd(frames(j)).SegmentedCenterline, mcd(frames(j)).StagePosition);
-        x(j) = mean(centerline(1,start_segment:end_segment),'omitnan');
-        y(j) = mean(centerline(2,start_segment:end_segment),'omitnan');
+        x(j) = mean(centerline(1,start_segment:end_segment));
+        y(j) = mean(centerline(2,start_segment:end_segment));
 
     end
 
     % store
-    run_disp{i,1} = [x(~isnan(x)); y(~isnan(y))];
+    have_nan = true;
+    if have_nan
+        run_disp{i,1} = [x; y];
+    else 
+        run_disp{i,1} = [x(~isnan(x)); y(~isnan(y))];
+    end
 
 end
 

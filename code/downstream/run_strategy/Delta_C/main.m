@@ -28,10 +28,6 @@ k = 50 / 60; % mM / mm
 C = x * k;
 C = C + 75;
 
-% cut label
-label = label';
-label = label(1:n_frame);
-
 %% Plot
 figure;
 t = (1:n_frame) / 66;

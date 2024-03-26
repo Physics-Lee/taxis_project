@@ -44,7 +44,7 @@ if root_path ~= 0
             my_save(folder_path_of_mcd, 'all_disp', save_file_name_3, 'all_disp', all_disp);
 
             % test
-            plot_Delta_C(all_disp_vector,label_rearranged);
+            % plot_Delta_C(all_disp_vector,label_rearranged);
         end
     end
 end

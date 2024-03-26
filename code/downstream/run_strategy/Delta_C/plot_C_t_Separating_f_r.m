@@ -4,7 +4,7 @@ function plot_C_t_Separating_f_r(t,C,label)
 changeIndices = find(diff(label) ~= 0) + 1;
 
 % Add the start and end indices to the list for complete segmentation
-segIndices = [1, changeIndices, length(label) + 1];
+segIndices = [1; changeIndices; length(label) + 1];
 
 % Plot each segment
 figure;
