@@ -6,9 +6,9 @@
 clear;clc;close all;
 
 dbstop if error;
-path = uigetdir;
-if path ~= 0
-    list_csv = get_all_files_of_a_certain_type_in_a_rootpath(path,'*machine_label_v2_frame_window_10.csv');
+root_path = uigetdir;
+if root_path ~= 0
+    list_csv = get_all_files_of_a_certain_type_in_a_rootpath(root_path,'*machine_label_v2_frame_window_10.csv');
     [indx,tf] = listdlg('ListString',list_csv,'ListSize',[800,600],'Name','Chose files');
     if tf == 1
         for i = indx

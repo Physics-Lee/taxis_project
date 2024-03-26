@@ -1,6 +1,7 @@
 function label_rearranged_numerical_array = cell2numerical_for_label_arranged(label_rearranged)
 
-% From cell array to numerical array for "label_rearranged"
+% From cell array to numerical array for "label_rearranged". 1 for
+% "forward" and 0 for "reorientation".
 %
 % 2024-03-25, Yixuan Li
 %
